@@ -1,0 +1,78 @@
+
+public class Books {
+private String title ;
+private String author;
+private int pages;
+private int quantity;
+private String description;
+private boolean disponible;
+private static final ObservableList<Books> countries = FXCollections.observableArrayList(
+		new Books("Kein and Abel","")
+		);
+
+
+	Books(String title,String author,int pages,int quantity,String description){		
+	this.title = title;
+	this.author = author;
+	this.pages = pages;
+	this.quantity = quantity;
+	this.description = description;
+	this.disponible = true;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public int getPages() {
+		return pages;
+	}
+
+	public void setPages(int pages) {
+		this.pages = pages;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public boolean isDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [title=" + title + ", author=" + author + ", pages=" + pages + ", quantity=" + quantity
+				+ ", description=" + description + ", disponible=" + disponible + "]";
+	}
+	
+	
+}

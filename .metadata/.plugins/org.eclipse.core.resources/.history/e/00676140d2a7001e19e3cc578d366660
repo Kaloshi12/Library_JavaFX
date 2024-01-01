@@ -1,0 +1,8 @@
+import javafx.collections.ObservableList;
+import javafx.scene.layout.BorderPane;
+
+public class LibraryView extends BorderPane {
+ObservableList<Books> bookList;
+
+	
+}

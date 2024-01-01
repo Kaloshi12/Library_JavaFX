@@ -1,0 +1,42 @@
+import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
+public class Library_Client extends BorderPane {
+    private Stage stageClient;
+    private ListView<Books> list;
+    private Button borrow;
+    private Button back;
+    private ObservableList<Books> borrowed_books;
+
+    Library_Client() {
+        stageClient = new Stage();
+        list = new ListView<>(Books.getListbook());
+        list.setCellFactory(param -> new ListCell<Books>() {
+            @Override
+            protected void updateItem(Books book, boolean empty) {
+                super.updateItem(book, empty);
+
+                if (empty || book == null) {
+                    setText(null);
+                } else {
+                    
+                    setText(String.format("%s by %s - Pages: %d, Quantity: %d",
+                            book.getTitle(), book.getAuthor(), book.getPages(), book.getQuantity()));
+                }
+            }
+        });
+        
+    }
+
+    public void openStage() {
+    	Scene scene = new Scene(list,600,800);
+    	stageClient.setScene(scene);
+    	stageClient.show();
+    }
+}
+
