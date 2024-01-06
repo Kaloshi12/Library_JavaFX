@@ -153,6 +153,54 @@ public class Admin_View extends Pane {
 		public void setAstage(Stage Astage) {
 			Astage = Astage;
 		}
+		public Text getRegister() {
+			return register;
+		}
+
+
+		public void setRegister(Text register) {
+			this.register = register;
+		}
+
+
+		public Button getShowSoldBooks() {
+			return showSoldBooks;
+		}
+
+
+		public void setShowSoldBooks(Button showSoldBooks) {
+			this.showSoldBooks = showSoldBooks;
+		}
+
+
+		public Button getRegister_Manager() {
+			return register_Manager;
+		}
+
+
+		public void setRegister_Manager(Button register_Manager) {
+			this.register_Manager = register_Manager;
+		}
+
+
+		public Button getRegiser_Librarian() {
+			return regiser_Librarian;
+		}
+
+
+		public void setRegiser_Librarian(Button regiser_Librarian) {
+			this.regiser_Librarian = regiser_Librarian;
+		}
+
+
+		public Button getCheck_Librarian() {
+			return check_Librarian;
+		}
+
+
+		public void setCheck_Librarian(Button check_Librarian) {
+			this.check_Librarian = check_Librarian;
+		}
 
 
 		

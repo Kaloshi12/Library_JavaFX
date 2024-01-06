@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -23,6 +25,10 @@ public Book(String iSBN, String title, Author author, int pages, int quantity, S
 	this.quantity = quantity;
 	this.description = description;
 }
+public static List<Book> getListbook1() {
+    return listbook;
+}
+
 public String getISBN() {
 	return iSBN;
 }

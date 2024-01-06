@@ -1,30 +1,34 @@
 package Model;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Manager extends Employee{
-	private HashMap<String,String> manager_loIn;
-	public Manager(String name, String surname, Date birthday, String phoneNumber, Double salary, AccessLevel level,
-			String userId, String password,HashMap<String,String> manager_loIn) {
-		super(name, surname, birthday, phoneNumber, salary, level, userId, password);
-	manager_loIn = manager_loIn;	
-	}
-	public HashMap<String, String> getManager_loIn() {
-		return manager_loIn;
-	}
-	public void setManager_loIn(HashMap<String, String> manager_loIn) {
-		this.manager_loIn = manager_loIn;
-	}
-	@Override
-	public String toString() {
-		return "Manager [manager_loIn=" + manager_loIn + ", getUserId()=" + getUserId() + ", getPassword()="
-				+ getPassword() + ", getName()=" + getName() + ", getSurname()=" + getSurname() + ", getBirthday()="
-				+ getBirthday() + ", getPhoneNumber()=" + getPhoneNumber() + ", getSalary()=" + getSalary()
-				+ ", getLevel()=" + getLevel() + ", toString()=" + super.toString() + "]";
-	}
-	
+public class Manager extends Employee {
+    private static ArrayList<Manager> managers = new ArrayList<>();
+    private static HashMap<String,String> man_LogIn = new HashMap<>();
 
-	
+    public Manager(String name, String surname, Date birthday, String phoneNumber, Double salary,
+                   AccessLevel level, String userId, String password) {
+        super(name, surname, birthday, phoneNumber, salary, level, userId, password);
+        managers.add(this);
+        man_LogIn.put(userId, password);
+    }
 
+    public static HashMap<String, String> getMan_LogIn() {
+		return man_LogIn;
+	}
+
+	public static void setMan_LogIn(HashMap<String, String> man_LogIn) {
+		Manager.man_LogIn = man_LogIn;
+	}
+
+	public static void setManagers(ArrayList<Manager> managers) {
+		Manager.managers = managers;
+	}
+
+	public static ArrayList<Manager> getManagers() {
+        return managers;
+    }
 }
