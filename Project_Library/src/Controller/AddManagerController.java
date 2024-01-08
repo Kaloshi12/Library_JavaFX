@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import Model.AccessLevel;
+import Model.Librarian;
 import Model.Manager;
 import View.AddManagerView;
 
@@ -50,7 +51,8 @@ private SimpleDateFormat dateFormat;
 
         Manager manager = new Manager(name, surname, birthday, phoneNumber, salary,
                 AccessLevel.MANAGER, userId, password);
-
+        
+       Manager.getManagers().add(manager);
         view.getManagerTableView().getItems().add(manager);
 
         clearFields();

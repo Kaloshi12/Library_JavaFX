@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Manager extends Employee {
-    private static ArrayList<Manager> managers = new ArrayList<>();
+	private static final ObservableList<Manager> managers= FXCollections.observableArrayList();
     private static HashMap<String,String> man_LogIn = new HashMap<>();
 
     public Manager(String name, String surname, Date birthday, String phoneNumber, Double salary,
@@ -24,11 +27,9 @@ public class Manager extends Employee {
 		Manager.man_LogIn = man_LogIn;
 	}
 
-	public static void setManagers(ArrayList<Manager> managers) {
-		Manager.managers = managers;
+	public static ObservableList<Manager> getManagers() {
+		return managers;
 	}
 
-	public static ArrayList<Manager> getManagers() {
-        return managers;
-    }
+	
 }

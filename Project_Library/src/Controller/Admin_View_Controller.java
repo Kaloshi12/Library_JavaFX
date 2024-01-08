@@ -1,6 +1,7 @@
 package Controller;
 
 
+import View.AddLibrarianStage;
 import View.AddManager_Stage;
 import View.Admin_View;
 import View.BookListView;
@@ -13,6 +14,7 @@ public class Admin_View_Controller {
 	private StageAddBook addBook = new StageAddBook();
 	private AddManager_Stage addManager = new AddManager_Stage();
 	private DeleteBookStage deleteStage = new DeleteBookStage();
+	private AddLibrarianStage addLibrarian = new AddLibrarianStage();
 	
 	public Admin_View_Controller(Admin_View view) {
 		
@@ -20,6 +22,7 @@ public class Admin_View_Controller {
 		view.getAddBooks().setOnAction(e -> addBook.open());
 		view.getRegister_Manager().setOnAction(e -> addManager.open());
 		view.getDelete().setOnAction(e -> deleteStage.open());
+		view.getRegiser_Librarian().setOnAction(e -> addLibrarian.open());
 	}
 	
 	public BookListView getStage() {

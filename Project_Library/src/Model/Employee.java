@@ -8,7 +8,7 @@ public class Employee {
 	private Date birthday;
 	private String phoneNumber;
 	private Double salary;
-	private AccessLevel level;
+	protected AccessLevel level;
 	private String userId;
 	private String password;
 	public String getUserId() {

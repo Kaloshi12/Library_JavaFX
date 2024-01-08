@@ -44,7 +44,7 @@ public class AddManagerView extends GridPane {
         passwordField = new TextField();
 
         addButton = new Button("Add Manager");
-        addButton.setOnAction(e -> addManager());
+        
 
         messageText = new Text();
         messageText.setStyle("-fx-fill: red;");
@@ -219,51 +219,5 @@ public class AddManagerView extends GridPane {
 
 
 
-		private void addManager() {
-	        String name = nameField.getText();
-	        String surname = surnameField.getText();
-	        Date birthday = parseDate(birthdayField.getText());
-	        String phoneNumber = phoneNumberField.getText();
-	        double salary = Double.parseDouble(salaryField.getText());
-	        String userId = userIdField.getText();
-	        String password = passwordField.getText();
-
-	        for (Manager existingManager : Manager.getManagers()) {
-	            if (existingManager.getName().equals(name) && existingManager.getSurname().equals(surname)) {
-	                messageText.setText("Manager with the same name and surname already exists. Please choose a different one.");
-	                return;
-	            }
-	            if (existingManager.getUserId().equals(userId)) {
-		            messageText.setText("User ID already exists. Please choose a different one.");
-		            return;
-	        }
-
-	        Manager manager = new Manager(name, surname, birthday, phoneNumber, salary,
-	                AccessLevel.MANAGER, userId, password);
-
-	        clearFields();
-
-	        messageText.setText("Manager added: " + manager);
-	    }
-		}
-
-    public Date parseDate(String dateString) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        try {
-            return dateFormat.parse(dateString);
-        } catch (ParseException e) {
-            System.out.println("Error parsing date. Please enter the date in the format dd/MM/yyyy.");
-            return null; 
-        }
-    }
-
-    public void clearFields() {
-        nameField.clear();
-        surnameField.clear();
-        birthdayField.clear();
-        phoneNumberField.clear();
-        salaryField.clear();
-        userIdField.clear();
-        passwordField.clear();
-    }
+		
 }
