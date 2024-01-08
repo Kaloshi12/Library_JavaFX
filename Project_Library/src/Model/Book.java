@@ -11,19 +11,46 @@ private String title;
 private Author author;
 private int pages;
 private int quantity;
+private Genres genre;
 private String description;
 private static final ObservableList<Book> listbook = FXCollections.observableArrayList(
-        new Book("978-1-234567-890", "Kein and Abel", new Author("Jeffrey", "Archer"), 732, 5, "This book is the shocking story of two men, the son of a Polish immigrant, and the other, the son of a privileged rich man from a family of wealthy Boston bankers. Abel Rosnovski, a poverty-stinging survivor, survives hardship, is persistent, emigrates to the United States and sets up a network of prestigious hotels."),
-        new Book("979-3-210987-654", "To Kill a Mockingbird", new Author("Harper", "Lee"), 281, 3, "Set in the American South during the Depression, To Kill a Mockingbird takes the reader to the roots of human behavior. Scout Finch lives with her brother Jem and their father Atticus, a lawyer, in a quiet town. The story deals with racial injustice and the destruction of innocence."),
-        new Book("978-9-876543-210", "The Great Gatsby", new Author("F. Scott", "Fitzgerald"), 180, 8, "The Great Gatsby is a classic novel that explores themes of decadence, idealism, and excess. Jay Gatsby, a mysterious millionaire, throws lavish parties to win the love of Daisy Buchanan, a woman who married another man while Gatsby served in World War I.")
+        new Book("978-1-234567-890", "Kein and Abel", new Author("Jeffrey", "Archer"), 732, 5,Genres.Biography_Autobiography ,"This book is the shocking story of two men, the son of a Polish immigrant, and the other, the son of a privileged rich man from a family of wealthy Boston bankers. Abel Rosnovski, a poverty-stinging survivor, survives hardship, is persistent, emigrates to the United States and sets up a network of prestigious hotels."),
+        new Book("979-3-210987-654", "To Kill a Mockingbird", new Author("Harper", "Lee"), 281, 3,Genres.Adventure ,"Set in the American South during the Depression, To Kill a Mockingbird takes the reader to the roots of human behavior. Scout Finch lives with her brother Jem and their father Atticus, a lawyer, in a quiet town. The story deals with racial injustice and the destruction of innocence."),
+        new Book("978-9-876543-210", "The Great Gatsby", new Author("F. Scott", "Fitzgerald"), 180, 8,Genres.History ,"The Great Gatsby is a classic novel that explores themes of decadence, idealism, and excess. Jay Gatsby, a mysterious millionaire, throws lavish parties to win the love of Daisy Buchanan, a woman who married another man while Gatsby served in World War I.")
 );
-public Book(String iSBN, String title, Author author, int pages, int quantity, String description) {
+public Book(String iSBN, String title, Author author, int pages, int quantity,Genres genre ,String description) {
 	this.iSBN = iSBN;
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
 	this.quantity = quantity;
+	this.genre = genre;
 	this.description = description;
+	
+}
+@Override
+public String toString() {
+    return "Book{" +
+            "ISBN='" + iSBN + '\'' +
+            ", title='" + title + '\'' +
+            ", author=" + author +
+            ", pages=" + pages +
+            ", quantity=" + quantity +
+            ", genre=" + genre +
+            ", description='" + description + '\'' +
+            '}';
+}
+public String getiSBN() {
+	return iSBN;
+}
+public void setiSBN(String iSBN) {
+	this.iSBN = iSBN;
+}
+public Genres getGenre() {
+	return genre;
+}
+public void setGenre(Genres genre) {
+	this.genre = genre;
 }
 public static List<Book> getListbook1() {
     return listbook;
@@ -34,9 +61,6 @@ public String getISBN() {
 }
 public void setISBN(String iSBN) {
 	this.iSBN = iSBN;
-}
-public static ObservableList<Book> getListbook() {
-	return listbook;
 }
 public String getTitle() {
 	return title;
@@ -67,6 +91,9 @@ public String getDescription() {
 }
 public void setDescription(String description) {
 	description = description;
+}
+public static ObservableList<Book> getListbook() {
+    return FXCollections.observableArrayList(listbook);
 }
 
 

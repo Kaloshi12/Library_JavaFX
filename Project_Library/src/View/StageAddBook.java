@@ -5,30 +5,29 @@ import Controller.ButtonAdd_Controller;
 import javafx.scene.Scene;
 
 public class StageAddBook extends OpenStage {
-private AddBook add = new AddBook();
-private ButtonAdd_Controller ctrl = new ButtonAdd_Controller(add);
+    private AddBookView add = new AddBookView();
+    private ButtonAdd_Controller ctrl = new ButtonAdd_Controller(add);
 
-	public AddBook getAdd() {
-	return add;
-}
+    public AddBookView getAdd() {
+        return add;
+    }
 
-public void setAdd(AddBook add) {
-	this.add = add;
-}
+    public void setAdd(AddBookView add) {
+        this.add = add;
+    }
 
-public ButtonAdd_Controller getCtrl() {
-	return ctrl;
-}
+    public ButtonAdd_Controller getCtrl() {
+        return ctrl;
+    }
 
-public void setCtrl(ButtonAdd_Controller ctrl) {
-	this.ctrl = ctrl;
-}
+    public void setCtrl(ButtonAdd_Controller ctrl) {
+        this.ctrl = ctrl;
+    }
 
-	@Override
-	public	void open() {
-	Scene scene = new Scene(add,300,300);
-	add.getStage().setScene(scene);
-	add.getStage().show();
-	}
-
+    @Override
+    public void open() {
+    	Scene scene = new Scene(add.getRoot(),1200,500);
+    	add.getStage().setScene(scene);
+    	add.getStage().show();
+    }
 }

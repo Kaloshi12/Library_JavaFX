@@ -8,7 +8,7 @@ private AddManagerView view = new AddManagerView();
 private AddManagerController  ctrl = new AddManagerController (view);
 @Override
 public void open() {
-	Scene scene = new Scene(view,400,300);
+	Scene scene = new Scene(view,800,500);
 	view.getStage().setScene(scene);
 	view.getStage().show();
 }
