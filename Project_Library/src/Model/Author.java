@@ -1,28 +1,32 @@
 package Model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Author {
-@Override
-	public String toString() {
-		return firstName  + lastName;
-	}
-private String firstName;
-private String lastName;
+
+private StringProperty firstName;
+private StringProperty lastName;
 public Author(String firstName, String lastName) {
-	super();
-	this.firstName = firstName;
-	this.lastName = lastName;
+	
+	this.firstName = new SimpleStringProperty(firstName);
+	this.lastName =new SimpleStringProperty(lastName);
 }
 public String getFirstName() {
-	return firstName;
+	return (String)firstName.get();
 }
 public void setFirstName(String firstName) {
-	this.firstName = firstName;
+	this.firstName.set(firstName);;
 }
 public String getLastName() {
-	return lastName;
+	return lastName.get();
 }
 public void setLastName(String lastName) {
-	this.lastName = lastName;
+	this.lastName.set(lastName);;
+}
+@Override
+public String toString() {
+	return "Autor FirstName=" + firstName + " " + " Autor LastName=" + lastName;
 }
 
 }

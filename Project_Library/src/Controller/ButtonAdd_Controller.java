@@ -14,33 +14,41 @@ public class ButtonAdd_Controller {
         this.view.getAddBookButton().setOnAction(e -> addBook());
     }
 
-    private void addBook() {
-        try {
+    public void addBook() {
+        
             String isbn = view.getIsbnField().getText();
+            System.out.println("1");
             String title = view.getTitleField().getText();
             String authorFirstName = view.getAuthorFirstNameField().getText();
+            System.out.println("2");
             String authorLastName = view.getAuthorLastNameField().getText();
+            System.out.println("3");
             int pages = Integer.parseInt(view.getPagesField().getText());
+            System.out.println("4");
             int quantity = Integer.parseInt(view.getQuantityField().getText());
+            System.out.println("5");
             String description = view.getDescriptionField().getText();
-
+            System.out.println("6");
             String selectedGenreText = view.getGenreMenuButton().getText();
+            System.out.println("7");
             Genres genre = getGenreFromText(selectedGenreText);
+            System.out.println("8");
 
             Author author = new Author(authorFirstName, authorLastName);
+            System.out.println("9");
             Book newBook = new Book(isbn, title, author, pages, quantity, genre, description);
-            Book.getListbook().add(newBook);
+            System.out.println("10");
+            Book.addBook(newBook);
 
-            Platform.runLater(() -> {
-                view.getBookTableView().getItems().setAll(Book.getListbook());
-                view.getBookTableView().refresh();
-            });
+           
+                view.getBookTableView().setItems(Book.getListBook());
+             
+       
 
             clearFields();
-            System.out.println("Book added: " + newBook);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
+        
+
+   
     }
 
     private Genres getGenreFromText(String genreText) {
@@ -54,7 +62,7 @@ public class ButtonAdd_Controller {
 
     }
 
-    private void clearFields() {
+   public void clearFields() {
         view.getIsbnField().clear();
         view.getTitleField().clear();
         view.getAuthorFirstNameField().clear();

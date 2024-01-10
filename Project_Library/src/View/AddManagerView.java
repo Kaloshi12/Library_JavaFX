@@ -1,5 +1,6 @@
 package View;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -8,8 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 import Model.AccessLevel;
@@ -18,7 +18,7 @@ import Model.Manager;
 public class AddManagerView extends GridPane {
     private TextField nameField;
     private TextField surnameField;
-    private TextField birthdayField;
+    private DatePicker birthdayPicker;  // Changed from TextField to DatePicker
     private TextField phoneNumberField;
     private TextField salaryField;
     private TextField userIdField;
@@ -37,14 +37,13 @@ public class AddManagerView extends GridPane {
 
         nameField = new TextField();
         surnameField = new TextField();
-        birthdayField = new TextField();
+        birthdayPicker = new DatePicker();  // Changed from TextField to DatePicker
         phoneNumberField = new TextField();
         salaryField = new TextField();
         userIdField = new TextField();
         passwordField = new TextField();
 
         addButton = new Button("Add Manager");
-        
 
         messageText = new Text();
         messageText.setStyle("-fx-fill: red;");
@@ -56,7 +55,7 @@ public class AddManagerView extends GridPane {
         add(new Label("Surname:"), 0, 1);
         add(surnameField, 1, 1);
         add(new Label("Birthday:"), 0, 2);
-        add(birthdayField, 1, 2);
+        add(birthdayPicker, 1, 2);
         add(new Label("Phone Number:"), 0, 3);
         add(phoneNumberField, 1, 3);
         add(new Label("Salary:"), 0, 4);
@@ -72,7 +71,7 @@ public class AddManagerView extends GridPane {
     }
 
     @SuppressWarnings("unchecked")
-	private TableView<Manager> createManagerTableView() {
+    private TableView<Manager> createManagerTableView() {
         TableView<Manager> tableView = new TableView<>();
         TableColumn<Manager, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(cellData ->
@@ -82,8 +81,22 @@ public class AddManagerView extends GridPane {
         surnameColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getSurname()));
 
-        TableColumn<Manager, Date> birthdayColumn = new TableColumn<>("Birthday");
-        birthdayColumn.setCellValueFactory(new PropertyValueFactory<>("birthday"));
+        TableColumn<Manager, LocalDate> birthdayColumn = new TableColumn<>("Birthday");
+        birthdayColumn.setCellValueFactory(cellData ->
+                new SimpleObjectProperty<>(cellData.getValue().getBirthday()));
+
+        // Update the cell factory to handle LocalDate
+        birthdayColumn.setCellFactory(column -> new TableCell<Manager, LocalDate>() {
+            @Override
+            protected void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setText(null);
+                } else {
+                    setText(item.toString());
+                }
+            }
+        });
 
         TableColumn<Manager, String> phoneNumberColumn = new TableColumn<>("Phone Number");
         phoneNumberColumn.setCellValueFactory(cellData ->
@@ -102,122 +115,94 @@ public class AddManagerView extends GridPane {
         return tableView;
     }
 
-	    
 
-	   
+    public TableView<Manager> getManagerTableView() {
+        return managerTableView;
+    }
 
+    public void setManagerTableView(TableView<Manager> managerTableView) {
+        this.managerTableView = managerTableView;
+    }
 
+    public TextField getNameField() {
+        return nameField;
+    }
 
-		public TableView<Manager> getManagerTableView() {
-		return managerTableView;
+    public void setNameField(TextField nameField) {
+        this.nameField = nameField;
+    }
+
+    public TextField getSurnameField() {
+        return surnameField;
+    }
+
+    public void setSurnameField(TextField surnameField) {
+        this.surnameField = surnameField;
+    }
+
+    public DatePicker getBirthdayPicker() {
+        return birthdayPicker;
+    }
+
+    public void setBirthdayPicker(DatePicker birthdayPicker) {
+        this.birthdayPicker = birthdayPicker;
+    }
+
+    public TextField getPhoneNumberField() {
+        return phoneNumberField;
+    }
+
+    public void setPhoneNumberField(TextField phoneNumberField) {
+        this.phoneNumberField = phoneNumberField;
+    }
+
+    public TextField getSalaryField() {
+        return salaryField;
+    }
+
+    public void setSalaryField(TextField salaryField) {
+        this.salaryField = salaryField;
+    }
+
+	public TextField getUserIdField() {
+		return userIdField;
 	}
 
-	public void setManagerTableView(TableView<Manager> managerTableView) {
-		this.managerTableView = managerTableView;
+	public void setUserIdField(TextField userIdField) {
+		this.userIdField = userIdField;
 	}
 
-		public TextField getNameField() {
-			return nameField;
-		}
+	public TextField getPasswordField() {
+		return passwordField;
+	}
 
+	public void setPasswordField(TextField passwordField) {
+		this.passwordField = passwordField;
+	}
 
+	public Button getAddButton() {
+		return addButton;
+	}
 
+	public void setAddButton(Button addButton) {
+		this.addButton = addButton;
+	}
 
+	public Text getMessageText() {
+		return messageText;
+	}
 
+	public void setMessageText(Text messageText) {
+		this.messageText = messageText;
+	}
 
+	public Stage getStage() {
+		return stage;
+	}
 
-		public void setNameField(TextField nameField) {
-			this.nameField = nameField;
-		}
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
 
-
-
-
-
-
-
-		public TextField getSurnameField() {
-			return surnameField;
-		}
-
-		public void setSurnameField(TextField surnameField) {
-			this.surnameField = surnameField;
-		}
-
-
-		public TextField getBirthdayField() {
-			return birthdayField;
-		}
-
-
-
-		public void setBirthdayField(TextField birthdayField) {
-			this.birthdayField = birthdayField;
-		}
-
-		public TextField getPhoneNumberField() {
-			return phoneNumberField;
-		}
-
-
-		public void setPhoneNumberField(TextField phoneNumberField) {
-			this.phoneNumberField = phoneNumberField;
-		}
-	
-
-
-		public TextField getSalaryField() {
-			return salaryField;
-		}
-
-		public void setSalaryField(TextField salaryField) {
-			this.salaryField = salaryField;
-		}
-
-		public TextField getUserIdField() {
-			return userIdField;
-		}
-
-		public void setUserIdField(TextField userIdField) {
-			this.userIdField = userIdField;
-		}
-
-		public TextField getPasswordField() {
-			return passwordField;
-		}
-
-
-		public void setPasswordField(TextField passwordField) {
-			this.passwordField = passwordField;
-		}
-
-		public Button getAddButton() {
-			return addButton;
-		}
-
-
-		public void setAddButton(Button addButton) {
-			this.addButton = addButton;
-		}
-
-		public Text getMessageText() {
-			return messageText;
-		}
-
-
-		public void setMessageText(Text messageText) {
-			this.messageText = messageText;
-		}
-
-		public Stage getStage() {
-			return stage;
-		}
-
-		public void setStage(Stage stage) {
-			this.stage = stage;
-		}
-
-
-
-		
+   
 }

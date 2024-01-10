@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import Model.Author;
 import Model.Book;
 import Model.Genres;
 
@@ -28,15 +29,7 @@ public class AddBookView {
     private TableView<Book> bookTableView;
     private VBox root;
 
-    public VBox getRoot() {
-		return root;
-	}
-
-	public void setRoot(VBox root) {
-		this.root = root;
-	}
-
-	public AddBookView() {
+    public AddBookView() {
         initialize();
     }
 
@@ -49,14 +42,12 @@ public class AddBookView {
 
         SplitPane splitPane = new SplitPane();
         splitPane.getItems().addAll(addBookPane, bookTableView);
-
-      
         splitPane.setDividerPositions(0.3f);
 
         root = new VBox(splitPane);
-
     }
-    private GridPane createAddBookPane() {
+
+    public GridPane createAddBookPane() {
         GridPane addBookPane = new GridPane();
         addBookPane.setPadding(new Insets(10));
         addBookPane.setHgap(10);
@@ -99,16 +90,21 @@ public class AddBookView {
         addBookPane.add(genreMenuButton, 1, 8);
         addBookPane.add(addBookButton, 0, 9, 2, 1);
 
+      
+        
+
         return addBookPane;
     }
 
     @SuppressWarnings("unchecked")
-	private TableView<Book> createBookTableView() {
-    	TableView<Book> tableView = new TableView<>();
-        tableView.setItems(Book.getListbook());
-        TableColumn<Book, String> iSBNColumn = new TableColumn<>("         ISBN             ");
+	public TableView<Book> createBookTableView() {
+        TableView<Book> tableView = new TableView<>();
+        tableView.setItems(Book.getListBook());
+        tableView.setEditable(true);
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        TableColumn<Book, String> iSBNColumn = new TableColumn<>("ISBN");
         iSBNColumn.setCellValueFactory(cellData ->
-            new SimpleStringProperty(cellData.getValue().getISBN()));
+                new SimpleStringProperty(cellData.getValue().getiSBN()));
 
         TableColumn<Book, String> titleColumn = new TableColumn<>("Title");
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -127,28 +123,20 @@ public class AddBookView {
         TableColumn<Book, Integer> quantityColumn = new TableColumn<>("Quantity");
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
- 
-        TableColumn<Book, Genres> genreColumn = new TableColumn<>("Genre");
-        genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        TableColumn<Book, String> genreColumn = new TableColumn<>("Genre");
+        genreColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getGenre().toString()));
 
-        tableView.getColumns().addAll(
-                iSBNColumn, titleColumn, authorFirstNameColumn, authorLastNameColumn,
-                pagesColumn, quantityColumn, genreColumn
-        );
+        tableView.getColumns().addAll(iSBNColumn, titleColumn, authorFirstNameColumn,
+                authorLastNameColumn, pagesColumn, quantityColumn, genreColumn);
+        
+        tableView.setItems(Book.getListBook());
 
         return tableView;
     }
 
-    public TableView<Book> getBookTableView() {
-        return bookTableView;
-    }
+    
 
-	public void setBookTableView(TableView<Book> bookTableView) {
-		this.bookTableView = bookTableView;
-	}
-
-
-   
     public TextField getIsbnField() {
 		return isbnField;
 	}
@@ -221,14 +209,29 @@ public class AddBookView {
 		this.genreMenuButton = genreMenuButton;
 	}
 
-	
-	public void setStage(Stage stage) {
-		this.stage = stage;
+	public TableView<Book> getBookTableView() {
+		return bookTableView;
 	}
 
-	public Stage getStage() {
+	public void setBookTableView(TableView<Book> bookTableView) {
+		this.bookTableView = bookTableView;
+	}
+
+	
+
+    public VBox getRoot() {
+        return root;
+    }
+
+    public void setRoot(VBox root) {
+        this.root = root;
+    }
+
+    public Stage getStage() {
         return stage;
     }
 
-    // Other getter and setter methods as needed
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 }

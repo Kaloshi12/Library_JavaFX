@@ -2,15 +2,19 @@ package View;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 import Model.AccessLevel;
 import Model.Librarian;
 import Model.Manager;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -23,7 +27,7 @@ import javafx.stage.Stage;
 	public class AddLibrarianView extends GridPane {
 	    private TextField nameField;
 	    private TextField surnameField;
-	    private TextField birthdayField;
+	    private DatePicker birthdayPicker;
 	    private TextField phoneNumberField;
 	    private TextField salaryField;
 	    private TextField userIdField;
@@ -32,48 +36,48 @@ import javafx.stage.Stage;
 	    private Text messageText;
 	    private Stage stage;
 	    private TableView<Librarian> librarianTableView;
+	     
 
 		public AddLibrarianView() {
-			 stage = new Stage();
+			stage = new Stage();
 
-		        setPadding(new Insets(10));
-		        setHgap(10);
-		        setVgap(10);
+	        setPadding(new Insets(10));
+	        setHgap(10);
+	        setVgap(10);
 
-		        nameField = new TextField();
-		        surnameField = new TextField();
-		        birthdayField = new TextField();
-		        phoneNumberField = new TextField();
-		        salaryField = new TextField();
-		        userIdField = new TextField();
-		        passwordField = new TextField();
+	        nameField = new TextField();
+	        surnameField = new TextField();
+	        birthdayPicker = new DatePicker();  
+	        phoneNumberField = new TextField();
+	        salaryField = new TextField();
+	        userIdField = new TextField();
+	        passwordField = new TextField();
 
-		        addButton = new Button("Add Librarian");
-		 
+	        addButton = new Button("Add Manager");
 
-		        messageText = new Text();
-		        messageText.setStyle("-fx-fill: red;");
+	        messageText = new Text();
+	        messageText.setStyle("-fx-fill: red;");
 
-		        librarianTableView = createLibrarianTableView();
+	        librarianTableView =createLibrarianTableView();
 
-		        add(new Label("Name:"), 0, 0);
-		        add(nameField, 1, 0);
-		        add(new Label("Surname:"), 0, 1);
-		        add(surnameField, 1, 1);
-		        add(new Label("Birthday:"), 0, 2);
-		        add(birthdayField, 1, 2);
-		        add(new Label("Phone Number:"), 0, 3);
-		        add(phoneNumberField, 1, 3);
-		        add(new Label("Salary:"), 0, 4);
-		        add(salaryField, 1, 4);
-		        add(new Label("User ID:"), 0, 5);
-		        add(userIdField, 1, 5);
-		        add(new Label("Password:"), 0, 6);
-		        add(passwordField, 1, 6);
-		        add(addButton, 0, 7, 2, 1);
-		        add(messageText, 0, 8, 2, 1);
-		        add(librarianTableView, 2, 0, 1, 9);
-		        setColumnSpan(librarianTableView, 2);
+	        add(new Label("Name:"), 0, 0);
+	        add(nameField, 1, 0);
+	        add(new Label("Surname:"), 0, 1);
+	        add(surnameField, 1, 1);
+	        add(new Label("Birthday:"), 0, 2);
+	        add(birthdayPicker, 1, 2);
+	        add(new Label("Phone Number:"), 0, 3);
+	        add(phoneNumberField, 1, 3);
+	        add(new Label("Salary:"), 0, 4);
+	        add(salaryField, 1, 4);
+	        add(new Label("User ID:"), 0, 5);
+	        add(userIdField, 1, 5);
+	        add(new Label("Password:"), 0, 6);
+	        add(passwordField, 1, 6);
+	        add(addButton, 0, 7, 2, 1);
+	        add(messageText, 0, 8, 2, 1);
+	        add(librarianTableView, 2, 0, 1, 9);
+	        setColumnSpan(librarianTableView, 2);
 		}
 
 
@@ -93,8 +97,22 @@ import javafx.stage.Stage;
 	        surnameColumn.setCellValueFactory(cellData ->
 	                new SimpleStringProperty(cellData.getValue().getSurname()));
 
-	        TableColumn<Librarian, Date> birthdayColumn = new TableColumn<>("Birthday");
-	        birthdayColumn.setCellValueFactory(new PropertyValueFactory<>("birthday"));
+	        TableColumn<Librarian, LocalDate> birthdayColumn = new TableColumn<>("Birthday");
+	        birthdayColumn.setCellValueFactory(cellData ->
+	                new SimpleObjectProperty<>(cellData.getValue().getBirthday()));
+
+	        
+	        birthdayColumn.setCellFactory(column -> new TableCell<Librarian, LocalDate>() {
+	            @Override
+	            protected void updateItem(LocalDate item, boolean empty) {
+	                super.updateItem(item, empty);
+	                if (item == null || empty) {
+	                    setText(null);
+	                } else {
+	                    setText(item.toString());
+	                }
+	            }
+	        });
 
 	        TableColumn<Librarian, String> phoneNumberColumn = new TableColumn<>("Phone Number");
 	        phoneNumberColumn.setCellValueFactory(cellData ->
@@ -113,7 +131,7 @@ import javafx.stage.Stage;
 	        return tableView;
 	    }
 
-
+		
 			public TableView<Librarian> getLibrarianTableView() {
 			return librarianTableView;
 		}
@@ -140,15 +158,13 @@ import javafx.stage.Stage;
 			}
 
 
-			public TextField getBirthdayField() {
-				return birthdayField;
-			}
+			 public DatePicker getBirthdayPicker() {
+			        return birthdayPicker;
+			    }
 
-
-
-			public void setBirthdayField(TextField birthdayField) {
-				this.birthdayField = birthdayField;
-			}
+			    public void setBirthdayPicker(DatePicker birthdayPicker) {
+			        this.birthdayPicker = birthdayPicker;
+			    }
 
 			public TextField getPhoneNumberField() {
 				return phoneNumberField;

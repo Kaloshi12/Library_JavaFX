@@ -29,7 +29,7 @@ public class DeleteBooks extends BorderPane{
 	        text.setText("Which book you want to delete");
 	        text.setFont(Font.font("Arial", FontWeight.SEMI_BOLD,20));
 	      
-	        list = new ListView<>(Book.getListbook());
+	        list = new ListView<>(Book.getListBook());
 	        list.setCellFactory(param -> new ListCell<Book>() {
 	            @Override
 	            protected void updateItem(Book book, boolean empty) {
@@ -62,7 +62,7 @@ public class DeleteBooks extends BorderPane{
 	    }
 	    
 	    public void updateBookList() {
-	        list.setItems(FXCollections.observableList(Book.getListbook()));
+	        list.setItems(FXCollections.observableList(Book.getListBook()));
 	    }
 	    public Stage getStageBook() {
 	        return stageBook;

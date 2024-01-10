@@ -2,6 +2,8 @@
 import java.util.Date;
 import java.util.HashMap;
 
+import View.LogInLibrarianStage;
+import View.LogInManagerStage;
 import View.viewAdminLogIn;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -23,14 +25,17 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         
     	viewAdminLogIn logIn_admin = new viewAdminLogIn();
+    	LogInManagerStage  logIn_manager = new LogInManagerStage();
+    	LogInLibrarianStage logIn_librarian = new LogInLibrarianStage();
         Button manager = new Button("Manager");
         manager.setLayoutX(70);
         manager.setLayoutY(450);
         manager.setMinSize(60, 30);
         manager.setPrefSize(100, 50);
+        manager.setOnAction(e -> logIn_manager.open());
         manager.setOnMouseEntered(e -> manager.setStyle("-fx-background-color: lightblue;"));
         manager.setOnMouseExited(e -> manager.setStyle(null));
-        //manager.setOnAction(e -> manager_logIn.showStage());
+       
 
         Button admin = new Button("Admin");
         admin.setLayoutX(200);
@@ -46,6 +51,9 @@ public class Main extends Application {
         librarian.setLayoutY(450);
         librarian.setMinSize(60, 30);
         librarian.setPrefSize(100, 50);
+        librarian.setOnAction(e -> logIn_librarian.open());
+        librarian.setOnMouseEntered(e -> librarian.setStyle("-fx-background-color: lightblue;"));
+        librarian.setOnMouseExited(e -> librarian.setStyle(null));
         
         
         

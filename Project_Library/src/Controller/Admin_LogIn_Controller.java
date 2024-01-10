@@ -35,8 +35,10 @@ public class Admin_LogIn_Controller {
         String user = view.getUsername().getText();
         String enteredPassword = view.getPassword().getText();
 
-        if (view.getAdmin().getAdmin_logIn().containsKey(user)) {
-            String storedPassword = view.getAdmin().getAdmin_logIn().get(user);
+        view.getAdmin();
+		if (Admin.getAdmin_logIn().containsKey(user)) {
+            view.getAdmin();
+			String storedPassword = Admin.getAdmin_logIn().get(user);
             if (storedPassword.equals(enteredPassword)) {
                 Platform.runLater(() -> adminStage.open());
             } else {

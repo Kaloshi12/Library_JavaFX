@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Book;
 import View.DeleteBooks;
+import javafx.collections.ObservableList;
 
 public class DeleteBook_Controller {
     private DeleteBooks view = new DeleteBooks();
@@ -12,16 +13,15 @@ public class DeleteBook_Controller {
     }
 
     private void deleteBook() {
-        Book selectedBook = view.getList().getSelectionModel().getSelectedItem();
-        if (selectedBook != null) {
-            if (selectedBook.getQuantity() > 0) {
-                selectedBook.setQuantity(selectedBook.getQuantity() - 1);
-                view.updateBookList();
-            } else {
-                view.getList().getItems().remove(selectedBook);
-                Book.getListbook().remove(selectedBook);
-            }
-        }
+    	 ObservableList<Book> selectedBook= (ObservableList<Book>) view.getList().getSelectionModel().getSelectedItem();
+        for (Book book : selectedBook) {
+        	if(book.getQuantity()>0) {
+        		book.setQuantity(book.getQuantity()-1);
+        	}else {
+        		Book.getListBook().removeAll(book);
+        	}
+		}
+    
     }
 }
 

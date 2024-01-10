@@ -27,7 +27,7 @@ import javafx.collections.FXCollections;
 	        text = new Text();
 	        text.setText("Books");
 	      
-	        list = new ListView<>(Book.getListbook());
+	        list = new ListView<Book>(Book.getListBook());
 	        list.setCellFactory(param -> new ListCell<Book>() {
 	            @Override
 	            protected void updateItem(Book book, boolean empty) {

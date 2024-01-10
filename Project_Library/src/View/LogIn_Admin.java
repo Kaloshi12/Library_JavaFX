@@ -1,5 +1,8 @@
 package View;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -33,10 +36,10 @@ public class LogIn_Admin extends Pane{
 	
 	public LogIn_Admin() {
 		
-		Date date = new Date(98, 8, 9);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
+		LocalDate date = LocalDate.parse("98-08-09", formatter);
 	    
 
-	   
 	    admin = new Admin("Franko", "Kaloshi", date, "+355688459875", 5000.0,
 	                     AccessLevel.ADMINISTRATOR,"Franko98","12345678");
 	    

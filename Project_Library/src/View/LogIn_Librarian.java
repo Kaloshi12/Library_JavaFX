@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 import Model.AccessLevel;
 import Model.Admin;
+import Model.Librarian;
 import Model.Manager;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -22,11 +23,40 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class LogIn_Manager extends Pane{
-	private Manager manager;
+public class LogIn_Librarian extends Pane{
+	 
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
+	LocalDate date = LocalDate.parse("98-08-09", formatter);
+	private Librarian librarian = new Librarian("Enio", "Bica", date, "+355688459875", 5000.0,
+             AccessLevel.LIBRARIAN,"Enio","12345678");
+
+	public DateTimeFormatter getFormatter() {
+		return formatter;
+	}
+
+	public void setFormatter(DateTimeFormatter formatter) {
+		this.formatter = formatter;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public Librarian getLibrarian() {
+		return librarian;
+	}
+
+	public void setLibrarian(Librarian librarian) {
+		this.librarian = librarian;
+	}
+
 	private Stage stage ;
-	private Label Musername;
-	private Label Mpassword;
+	private Label Lusername;
+	private Label Lpassword;
 	private TextField username;
 	private PasswordField password;
 	private CheckBox  showPasswordCheckbox;
@@ -35,26 +65,18 @@ public class LogIn_Manager extends Pane{
 	private Button back;
 	private Text succes ;
 	
-	public LogIn_Manager() {
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
-		LocalDate date = LocalDate.parse("98-08-09", formatter);
-	    
+	public LogIn_Librarian() {
 
-	    Manager manager = new Manager("Franko", "Kaloshi", date, "+355688459875", 5000.0,
-	                     AccessLevel.MANAGER,"Herion","12345678");
-	    
-		
 		this.stage = new Stage();
-		stage.setTitle("Manager LogIn");
-		Musername = new Label("UserID");
-		Musername.setLayoutX(20);
-		Musername.setLayoutY(55);
-		Musername.setFont(Font.font("Arial",14));
-		Mpassword = new Label("Password");
-		Mpassword.setLayoutX(20);
-		Mpassword.setLayoutY(100);
-		Mpassword.setFont(Font.font("Arial",14));
+		stage.setTitle("Librarian LogIn");
+		Lusername = new Label("UserID");
+		Lusername.setLayoutX(20);
+		Lusername.setLayoutY(55);
+		Lusername.setFont(Font.font("Arial",14));
+		Lpassword = new Label("Password");
+		Lpassword.setLayoutX(20);
+		Lpassword.setLayoutY(100);
+		Lpassword.setFont(Font.font("Arial",14));
 		username = new TextField();
 		username.setLayoutX(120);
 		username.setLayoutY(50);
@@ -92,27 +114,9 @@ public class LogIn_Manager extends Pane{
         back = new Button("Back");
         back.setLayoutX(10);
         back.setLayoutY(10);
-        getChildren().addAll(Musername, Mpassword, username, password, showPasswordCheckbox, logIn, back,show,succes);
+        getChildren().addAll(Lusername, Lpassword, username, password, showPasswordCheckbox, logIn, back,show,succes);
     
 }	
-	
-	
-	
-
-
-
-
-
-
-
-	public void setApassword(Label apassword) {
-		Mpassword = apassword;
-	}
-
-
-
-
-
 
 	public Label getShow() {
 		return show;
@@ -136,22 +140,6 @@ public class LogIn_Manager extends Pane{
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
-	}
-
-	public Label getAusername() {
-		return Musername;
-	}
-
-	public void setAusername(Label Musername) {
-		this.Musername = Musername;
-	}
-
-	public Label getApassword() {
-		return Mpassword;
-	}
-
-	public void setapassword(Label Mpassword) {
-		this.Mpassword = Mpassword;
 	}
 
 	public TextField getUsername() {
@@ -193,28 +181,26 @@ public class LogIn_Manager extends Pane{
 	public void setBack(Button back) {
 		this.back = back;
 	}
-	public Manager getManager() {
-		return manager;
+
+	
+
+	public Label getLusername() {
+		return Lusername;
 	}
 
-	public void setManager(Manager manager) {
-		this.manager = manager;
+	public void setLusername(Label lusername) {
+		Lusername = lusername;
 	}
 
-	public Label getMusername() {
-		return Musername;
-	}
-	public void setMusername(Label musername) {
-		Musername = musername;
+	public Label getLpassword() {
+		return Lpassword;
 	}
 
-	public Label getMpassword() {
-		return Mpassword;
+	public void setLpassword(Label lpassword) {
+		Lpassword = lpassword;
 	}
 
-	public void setMpassword(Label mpassword) {
-		Mpassword = mpassword;
-	}
+	
 	
 
 

@@ -1,57 +1,64 @@
 package Model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Employee {
-	private String name ;
-	private String surname;
-	private Date birthday;
-	private String phoneNumber;
-	private Double salary;
+	private StringProperty name ;
+	private StringProperty surname;
+	private LocalDate birthday;
+	private StringProperty phoneNumber;
+	private DoubleProperty salary;
 	protected AccessLevel level;
-	private String userId;
-	private String password;
+	private StringProperty userId;
+	private StringProperty password;
 	public String getUserId() {
-		return userId;
+		return (String)userId.get();
 	}
 	public void setUserId(String userId) {
-		this.userId = userId;
+		this.userId.set(userId);;
 	}
 	public String getPassword() {
-		return password;
+		return password.get();
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		this.password.set(password);;
 	}
 	public String getName() {
-		return name;
+		return (String)name.get();
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.name.set(name);;
 	}
 	public String getSurname() {
-		return surname;
+		return (String)surname.get();
 	}
 	public void setSurname(String surname) {
-		this.surname = surname;
+		this.surname.set(surname);;
 	}
-	public Date getBirthday() {
+	public LocalDate getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(Date birthday) {
+	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
 	}
 	public String getPhoneNumber() {
-		return phoneNumber;
+		return (String)phoneNumber.get();
 	}
 	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+		this.phoneNumber.set(phoneNumber);;
 	}
 	public Double getSalary() {
-		return salary;
+		return salary.get();
 	}
 	public void setSalary(Double salary) {
-		this.salary = salary;
+		this.salary.set(salary);;
 	}
 	public AccessLevel getLevel() {
 		return level;
@@ -59,18 +66,19 @@ public class Employee {
 	public void setLevel(AccessLevel level) {
 		this.level = level;
 	}
-	public Employee(String name, String surname, Date birthday, String phoneNumber, Double salary, AccessLevel level,
+	public Employee(String name, String surname, LocalDate birthday, String phoneNumber, Double salary, AccessLevel level,
 			String userId, String password) {
 		super();
-		this.name = name;
-		this.surname = surname;
+		this.name = new SimpleStringProperty(name);
+		this.surname = new SimpleStringProperty(surname);
 		this.birthday = birthday;
-		this.phoneNumber = phoneNumber;
-		this.salary = salary;
+		this.phoneNumber = new SimpleStringProperty(phoneNumber);
+		this.salary = new SimpleDoubleProperty(salary);
 		this.level = level;
-		this.userId = userId;
-		this.password = password;
+		this.userId = new SimpleStringProperty(userId);
+		this.password = new SimpleStringProperty(password);
 	}
+	
 	
 
 }

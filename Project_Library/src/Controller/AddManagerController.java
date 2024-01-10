@@ -1,82 +1,87 @@
 package Controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableView;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import Model.AccessLevel;
-import Model.Librarian;
 import Model.Manager;
 import View.AddManagerView;
 
 public class AddManagerController {
-private AddManagerView view = new AddManagerView();
-private SimpleDateFormat dateFormat;
-	public AddManagerController(AddManagerView view){
-	view.getAddButton().setOnAction(e -> addManager() );
-}
-	public AddManagerView getView() {
-		return view;
-	}
-	public void setView(AddManagerView view) {
-		this.view = view;
-	}
-	public SimpleDateFormat getDateFormat() {
-		return dateFormat;
-	}
-	public void setDateFormat(SimpleDateFormat dateFormat) {
-		this.dateFormat = dateFormat;
-	}
-	
+    private AddManagerView view;
 
-	public void addManager() {
+    public AddManagerController(AddManagerView view) {
+        this.view = view;
+        view.getAddButton().setOnAction(e -> addManager());
+    }
+
+    public void addManager() {
         String name = view.getNameField().getText();
         String surname = view.getSurnameField().getText();
-        Date birthday = parseDate(view.getBirthdayField().getText());
+        LocalDate birthday = view.getBirthdayPicker().getValue();  
         String phoneNumber = view.getPhoneNumberField().getText();
-        double salary = Double.parseDouble(view.getSalaryField().getText());
+        double salary;
+
+        try {
+            salary = Double.parseDouble(view.getSalaryField().getText());
+        } catch (NumberFormatException e) {
+            showWrongAlert("Error", "Invalid salary format. Please enter a valid number.");
+            return;
+        }
+
         String userId = view.getUserIdField().getText();
         String password = view.getPasswordField().getText();
 
         for (Manager existingManager : Manager.getManagers()) {
             if (existingManager.getName().equals(name) && existingManager.getSurname().equals(surname)) {
-                view.getMessageText().setText("Manager with the same name and surname already exists. Please choose a different one.");
+                showWrongAlert("Error", "Manager with the same name and surname already exists. Please choose a different one.");
                 return;
             }
             if (existingManager.getUserId().equals(userId)) {
-                view.getMessageText().setText("User ID already exists. Please choose a different one.");
+                showWrongAlert("Error", "User ID already exists. Please choose a different one.");
                 return;
             }
         }
 
-        Manager manager = new Manager(name, surname, birthday, phoneNumber, salary,
-                AccessLevel.MANAGER, userId, password);
-        
-       Manager.getManagers().add(manager);
-        view.getManagerTableView().getItems().add(manager);
+        Manager manager = new Manager(name, surname, birthday, phoneNumber, salary, AccessLevel.MANAGER, userId, password);
+        Manager.addManager(manager);
+        Manager.addLogInManager(userId, password);
+
+        view.getManagerTableView().setItems(Manager.getManagers());
 
         clearFields();
 
-        view.getMessageText().setText("Manager added: " + manager);
-    }
-
-   public Date parseDate(String dateString) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        try {
-            return dateFormat.parse(dateString);
-        } catch (ParseException e) {
-            System.out.println("Error parsing date. Please enter the date in the format MM/dd/yyyy.");
-            return null;
-        }
+        showSuccessAlert("Success", "Manager added successfully: " + name + surname);
     }
 
     public void clearFields() {
         view.getNameField().clear();
         view.getSurnameField().clear();
-        view.getBirthdayField().clear();
+        view.getBirthdayPicker().setValue(null); 
         view.getPhoneNumberField().clear();
         view.getSalaryField().clear();
         view.getUserIdField().clear();
         view.getPasswordField().clear();
+    }
+    
+    private void showSuccessAlert(String title,String message) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public void showWrongAlert(String title, String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
