@@ -13,10 +13,10 @@ import javafx.stage.Stage;
 public class MenuLibrarianView extends Pane {
 	private Text text;
 	private Button showBooks;
-	
-	private Button showSoldBooks;
+	private Button sellBook;
 	private Button back;
 	private Button bill;
+	private Button soldBook;
 	private Stage Lstage;
 
 		 public MenuLibrarianView(){
@@ -43,19 +43,38 @@ public class MenuLibrarianView extends Pane {
 			showBooks.setPrefHeight(60);
 			showBooks.setOnMouseEntered(e -> showBooks.setStyle("-fx-background-color: lightblue;"));
 			showBooks.setOnMouseExited(e -> showBooks.setStyle(null));
-			showSoldBooks = new Button();
-			showSoldBooks.setText("Sold Books");
-			showSoldBooks.setLayoutX(300);
-			showSoldBooks.setLayoutY(400);
-			showSoldBooks.setPrefWidth(120);
-			showSoldBooks.setPrefHeight(60);
-			showSoldBooks.setOnMouseEntered(e -> showSoldBooks.setStyle("-fx-background-color: lightblue;"));
-			showSoldBooks.setOnMouseExited(e -> showSoldBooks.setStyle(null));
+			sellBook = new Button();
+			sellBook.setText("Sell Books");
+			sellBook.setLayoutX(300);
+			sellBook.setLayoutY(400);
+			sellBook.setPrefWidth(120);
+			sellBook.setPrefHeight(60);
+			sellBook.setOnMouseEntered(e -> sellBook.setStyle("-fx-background-color: lightblue;"));
+			sellBook.setOnMouseExited(e -> sellBook.setStyle(null));
 
+			soldBook = new Button();
+			soldBook.setText("Sell Books");
+			soldBook.setLayoutX(160);
+			soldBook.setLayoutY(300);
+			soldBook.setPrefWidth(120);
+			soldBook.setPrefHeight(60);
+			soldBook.setOnMouseEntered(e -> soldBook.setStyle("-fx-background-color: lightblue;"));
+			soldBook.setOnMouseExited(e -> soldBook.setStyle(null));
 			
 			
-			getChildren().addAll(text,bill,showBooks,showSoldBooks);
 			
+			getChildren().addAll(text,bill,showBooks,sellBook,soldBook);
+			
+		}
+
+
+	public Button getSoldBook() {
+			return soldBook;
+		}
+
+
+		public void setSoldBook(Button soldBook) {
+			this.soldBook = soldBook;
 		}
 
 
@@ -92,13 +111,16 @@ public class MenuLibrarianView extends Pane {
 		}
 
 
-		public Button getShowBorrowedBooks() {
-			return showSoldBooks;
+		
+
+
+		public Button getSellBook() {
+			return sellBook;
 		}
 
 
-		public void setShowBorrowedBooks(Button showSoldBooks) {
-			this.showSoldBooks = showSoldBooks;
+		public void setSellBook(Button sellBook) {
+			this.sellBook = sellBook;
 		}
 
 
@@ -130,16 +152,6 @@ public class MenuLibrarianView extends Pane {
 
 
 		
-
-		public Button getShowSoldBooks() {
-			return showSoldBooks;
-		}
-
-
-		public void setShowSoldBooks(Button showSoldBooks) {
-			this.showSoldBooks = showSoldBooks;
-		}
-
 		
 
 

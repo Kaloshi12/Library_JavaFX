@@ -26,7 +26,7 @@ public class StageAddBook extends OpenStage {
 
     @Override
     public void open() {
-    	Scene scene = new Scene(add.getRoot(),1200,500);
+    	Scene scene = new Scene(add.getRoot(),1230,500);
     	add.getStage().setScene(scene);
     	add.getStage().show();
     }

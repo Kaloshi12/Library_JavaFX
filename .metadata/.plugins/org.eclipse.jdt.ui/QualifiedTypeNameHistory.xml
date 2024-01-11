@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javafx.scene.control.Label"/>
-    <fullyQualifiedTypeName name="javafx.stage.Stage"/>
-    <fullyQualifiedTypeName name="javafx.scene.text.Text"/>
-    <fullyQualifiedTypeName name="View.AddManagerView"/>
-    <fullyQualifiedTypeName name="Controller.AddManagerController"/>
-    <fullyQualifiedTypeName name="View.AddManager_Stage"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.DatePicker"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.BorderPane"/>
     <fullyQualifiedTypeName name="javafx.scene.text.Font"/>
     <fullyQualifiedTypeName name="javafx.scene.text.FontPosture"/>
     <fullyQualifiedTypeName name="javafx.scene.text.FontWeight"/>
     <fullyQualifiedTypeName name="Controller.DeleteBook_Controller"/>
     <fullyQualifiedTypeName name="View.DeleteBooks"/>
-    <fullyQualifiedTypeName name="Model.Book"/>
     <fullyQualifiedTypeName name="View.DeleteBookStage"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="javafx.scene.control.MenuButton"/>
@@ -34,11 +25,8 @@
     <fullyQualifiedTypeName name="javafx.beans.property.IntegerProperty"/>
     <fullyQualifiedTypeName name="javafx.beans.property.SimpleIntegerProperty"/>
     <fullyQualifiedTypeName name="Model.Author"/>
-    <fullyQualifiedTypeName name="javafx.collections.ObservableList"/>
-    <fullyQualifiedTypeName name="javafx.beans.property.DoubleProperty"/>
     <fullyQualifiedTypeName name="javafx.beans.property.StringProperty"/>
     <fullyQualifiedTypeName name="javafx.beans.property.SimpleStringProperty"/>
-    <fullyQualifiedTypeName name="javafx.beans.property.SimpleDoubleProperty"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="javax.swing.text.DateFormatter"/>
@@ -52,12 +40,24 @@
     <fullyQualifiedTypeName name="View.MenuManagerView"/>
     <fullyQualifiedTypeName name="Controller.MenuMenager_Controller"/>
     <fullyQualifiedTypeName name="View.LogInLibrarianStage"/>
-    <fullyQualifiedTypeName name="View.OpenStage"/>
-    <fullyQualifiedTypeName name="View.MenuLibrarianView"/>
-    <fullyQualifiedTypeName name="javafx.scene.Scene"/>
     <fullyQualifiedTypeName name="Controller.LogInLibrarian_Controller"/>
     <fullyQualifiedTypeName name="View.LogIn_Librarian"/>
     <fullyQualifiedTypeName name="View.MenuLibrarianStage"/>
     <fullyQualifiedTypeName name="java.lang.LinkageError"/>
     <fullyQualifiedTypeName name="Model.Librarian"/>
+    <fullyQualifiedTypeName name="View.MenuLibrarianView"/>
+    <fullyQualifiedTypeName name="Controller.MenuLibrarian_Controller"/>
+    <fullyQualifiedTypeName name="javafx.beans.property.DoubleProperty"/>
+    <fullyQualifiedTypeName name="javafx.beans.property.SimpleDoubleProperty"/>
+    <fullyQualifiedTypeName name="View.OpenStage"/>
+    <fullyQualifiedTypeName name="javafx.scene.Scene"/>
+    <fullyQualifiedTypeName name="View.SellBookStage"/>
+    <fullyQualifiedTypeName name="View.SellBookView"/>
+    <fullyQualifiedTypeName name="Model.Book"/>
+    <fullyQualifiedTypeName name="Controller.SellBook_Controller"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="View.SoldBooksView"/>
+    <fullyQualifiedTypeName name="javafx.collections.ObservableList"/>
+    <fullyQualifiedTypeName name="javafx.collections.ObservableMap"/>
+    <fullyQualifiedTypeName name="View.SoldBookStage"/>
 </qualifiedTypeNameHistroy>

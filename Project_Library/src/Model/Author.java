@@ -5,28 +5,28 @@ import javafx.beans.property.StringProperty;
 
 public class Author {
 
-private StringProperty firstName;
-private StringProperty lastName;
+private String firstName;
+private String lastName;
 public Author(String firstName, String lastName) {
 	
-	this.firstName = new SimpleStringProperty(firstName);
-	this.lastName =new SimpleStringProperty(lastName);
+	this.firstName = firstName;
+	this.lastName =lastName;
 }
 public String getFirstName() {
-	return (String)firstName.get();
+	return this.firstName;
 }
 public void setFirstName(String firstName) {
-	this.firstName.set(firstName);;
+	this.firstName=firstName;
 }
 public String getLastName() {
-	return lastName.get();
+	return this.lastName;
 }
 public void setLastName(String lastName) {
-	this.lastName.set(lastName);;
+	this.lastName = lastName ;
 }
 @Override
 public String toString() {
-	return "Autor FirstName=" + firstName + " " + " Autor LastName=" + lastName;
+	return "Autor FirstName: " + firstName + " " + " Autor LastName: " + lastName;
 }
 
 }

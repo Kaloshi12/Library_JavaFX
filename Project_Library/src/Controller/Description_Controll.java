@@ -5,7 +5,7 @@ import View.ShowAllBooks;
 
 public class Description_Controll {
     private ShowAllBooks book = new ShowAllBooks();
-    Description description = new Description();
+    private Description description = new Description();
     public ShowAllBooks getBook() {
 		return book;
 	}

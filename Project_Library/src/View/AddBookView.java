@@ -1,5 +1,6 @@
 package View;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,7 @@ public class AddBookView {
     private TextField authorLastNameField;
     private TextField pagesField;
     private TextField quantityField;
+    private TextField priceField;
     private TextField descriptionField;
     private Button addBookButton;
     private Stage stage;
@@ -69,6 +71,7 @@ public class AddBookView {
         authorLastNameField = new TextField();
         pagesField = new TextField();
         quantityField = new TextField();
+        priceField = new TextField();
         descriptionField = new TextField();
         addBookButton = new Button("Add Book");
 
@@ -84,10 +87,12 @@ public class AddBookView {
         addBookPane.add(pagesField, 1, 4);
         addBookPane.add(new Label("Quantity:"), 0, 5);
         addBookPane.add(quantityField, 1, 5);
-        addBookPane.add(new Label("Description:"), 0, 6);
-        addBookPane.add(descriptionField, 1, 6);
-        addBookPane.add(genreLabel, 0, 8);
-        addBookPane.add(genreMenuButton, 1, 8);
+        addBookPane.add(new Label("Price"), 0, 6);
+        addBookPane.add(priceField, 1, 6);
+        addBookPane.add(new Label("Description:"), 0, 7);
+        addBookPane.add(descriptionField, 1, 7);
+        addBookPane.add(genreLabel, 0, 9);
+        addBookPane.add(genreMenuButton, 1, 9);
         addBookPane.add(addBookButton, 0, 9, 2, 1);
 
       
@@ -96,7 +101,15 @@ public class AddBookView {
         return addBookPane;
     }
 
-    @SuppressWarnings("unchecked")
+    public TextField getPriceField() {
+		return priceField;
+	}
+
+	public void setPriceField(TextField priceField) {
+		this.priceField = priceField;
+	}
+
+	@SuppressWarnings("unchecked")
 	public TableView<Book> createBookTableView() {
         TableView<Book> tableView = new TableView<>();
         tableView.setItems(Book.getListBook());
@@ -126,9 +139,12 @@ public class AddBookView {
         TableColumn<Book, String> genreColumn = new TableColumn<>("Genre");
         genreColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getGenre().toString()));
+        
+        TableColumn<Book, Double> priceColumn = new TableColumn<>("Price");
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         tableView.getColumns().addAll(iSBNColumn, titleColumn, authorFirstNameColumn,
-                authorLastNameColumn, pagesColumn, quantityColumn, genreColumn);
+                authorLastNameColumn, pagesColumn, quantityColumn, genreColumn,priceColumn);
         
         tableView.setItems(Book.getListBook());
 

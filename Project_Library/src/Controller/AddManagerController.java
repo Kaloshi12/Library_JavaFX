@@ -56,7 +56,7 @@ public class AddManagerController {
 
         clearFields();
 
-        showSuccessAlert("Success", "Manager added successfully: " + name + surname);
+        showSuccessAlert("Success", "Manager added successfully: " + name +" "+ surname);
     }
 
     public void clearFields() {
@@ -70,7 +70,7 @@ public class AddManagerController {
     }
     
     private void showSuccessAlert(String title,String message) {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
+        Alert alert = new Alert(AlertType.NONE);
         alert.setTitle("Success");
         alert.setHeaderText(title);
         alert.setContentText(message);

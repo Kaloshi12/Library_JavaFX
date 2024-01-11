@@ -14,13 +14,13 @@ import javafx.collections.FXCollections;
 	import javafx.scene.text.Text;
 	import javafx.stage.Stage;
 
-	public class ShowAllBooks extends  BorderPane {
+	public class SellBookView extends  BorderPane {
 	    private Stage stageBook;
 	    private ListView<Book> list;
-	    private Button descriptionButton;
+	    private Button buyButton;
 	    private Text text;
 
-	    public ShowAllBooks() {
+	    public SellBookView() {
 	    	
 	        stageBook = new Stage();
 	        stageBook.setTitle("Books");
@@ -38,7 +38,6 @@ import javafx.collections.FXCollections;
 	                } else {
 	                	setText(String.format("%s by %s - Pages: %d Quantity: %d Price: %.2f",
 	                		    book.getTitle(), book.getAuthor(), book.getPages(), book.getQuantity(), book.getPrice()));
-
 	                }
 	            }
 	        });
@@ -50,11 +49,11 @@ import javafx.collections.FXCollections;
 	        
 	        HBox hbox = new HBox();
 	      
-	        descriptionButton = new Button("Description");
-	        descriptionButton.setPrefWidth(80);
-	        descriptionButton.setPrefHeight(40);
+	        buyButton = new Button("Buy");
+	        buyButton.setPrefWidth(120);
+	        buyButton.setPrefHeight(50);
 	       
-	        hbox.getChildren().addAll(descriptionButton);
+	        hbox.getChildren().addAll(buyButton);
 	        hbox.setSpacing(50.0);
 	        setBottom(hbox);
 	        setCenter(list);
@@ -76,14 +75,14 @@ import javafx.collections.FXCollections;
 	    }
 
 	   
-	    public Button getDescriptionButton() {
-			return descriptionButton;
-		}
+	   
 
-		public void setDescriptionButton(Button descriptionButton) {
-			this.descriptionButton = descriptionButton;
+		public Button getBuyButton() {
+			return buyButton;
 		}
-
+		public void setBuyButton(Button buyButton) {
+			this.buyButton = buyButton;
+		}
 		public Text getText() {
 			return text;
 		}
