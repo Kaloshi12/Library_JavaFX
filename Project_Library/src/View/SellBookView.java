@@ -9,7 +9,8 @@ import javafx.collections.FXCollections;
 	import javafx.scene.control.Button;
 	import javafx.scene.control.ListCell;
 	import javafx.scene.control.ListView;
-	import javafx.scene.layout.BorderPane;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.layout.BorderPane;
 	import javafx.scene.layout.HBox;
 	import javafx.scene.text.Text;
 	import javafx.stage.Stage;
@@ -41,6 +42,8 @@ import javafx.collections.FXCollections;
 	                }
 	            }
 	        });
+	        
+	        list.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 	        FlowPane pane = new FlowPane();
 	        pane.getChildren().add(text);

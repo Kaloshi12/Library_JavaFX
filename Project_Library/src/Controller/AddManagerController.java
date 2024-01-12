@@ -36,7 +36,12 @@ public class AddManagerController {
 
         String userId = view.getUserIdField().getText();
         String password = view.getPasswordField().getText();
-
+        if (!validInput(name, "Name") ||
+                !validInput(surname, "Surname") ||
+                !validInput(userId, "UserId") ||
+                !validInput(password, "Password")) {
+                return;
+            }
         for (Manager existingManager : Manager.getManagers()) {
             if (existingManager.getName().equals(name) && existingManager.getSurname().equals(surname)) {
                 showWrongAlert("Error", "Manager with the same name and surname already exists. Please choose a different one.");
@@ -67,6 +72,15 @@ public class AddManagerController {
         view.getSalaryField().clear();
         view.getUserIdField().clear();
         view.getPasswordField().clear();
+    }
+    public boolean validInput(String input , String fieldName) {
+ 	   String regex = "\\b[a-zA-Z]+\\b[a-zA-Z]+.*";
+ 	   if (!input.matches(regex)) {
+ 	        showWrongAlert("Failed", fieldName + " must contain 2 or more words.");
+ 	        return false;
+ 	    }
+ 	   return true;
+
     }
     
     private void showSuccessAlert(String title,String message) {
