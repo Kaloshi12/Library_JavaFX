@@ -4,19 +4,19 @@ import View.BookListView;
 import View.MenuLibrarianView;
 import View.SellBookStage;
 import View.SoldBookStage;
-import View.SoldBooksView;
+
 
 public class MenuLibrarian_Controller {
     private MenuLibrarianView view = new MenuLibrarianView();
     private BookListView stage = new BookListView();
     private SellBookStage sellBook = new SellBookStage();
-   private SoldBookStage soldBooks = new SoldBookStage();
+    private SoldBookStage soldBooks = new SoldBookStage();
 
     public MenuLibrarian_Controller(MenuLibrarianView view) {
         this.view = view;
         view.getShowBooks().setOnAction(e -> stage.open());
         view.getSellBook().setOnAction(e -> sellBook.open());
-        view.getSoldBook().setOnAction(e -> soldBooks.show()); // Corrected action
+        view.getSoldBook().setOnAction(e -> soldBooks.show()); 
     }
 
     public SellBookStage getSellBook() {

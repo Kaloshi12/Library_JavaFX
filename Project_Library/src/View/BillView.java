@@ -1,6 +1,7 @@
 package View;
 
 import Model.Bill;
+
 import Model.Book;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,18 +63,16 @@ public class BillView {
 	public BillView(Bill bill) {
         stageBill = new Stage();
         stageBill.setTitle("Bill Details");
-
         dateLabel = new Label("Date: " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(bill.getDate()));
         dateLabel.setFont(Font.font("Arial", FontWeight.BOLD,14));
         totalPriceLabel = new Label("                          				 Total Price: " + String.format("%.2f", bill.getTotalPrice()));
         totalPriceLabel.setFont(Font.font("Arial",FontWeight.BOLD,14));
         bookDetailsVBox = new VBox(10);
-        ObservableList<Book> books = FXCollections.observableArrayList(bill.getBook());
+        ObservableList<Book> books = FXCollections.observableArrayList(bill.getBooks());
 
         for (Book book : books) {
             HBox bookDetailsHBox = new HBox(10);
 
-            // Add billID to the title label
             Label titleLabel = new Label("   Title: " + book.getTitle());
             Label priceLabel = new Label("                   Price: " + String.format("%.2f", book.getPrice()));
             
@@ -83,7 +82,7 @@ public class BillView {
         }
         
        
-        Id = new Label("  ID: " + String.format("%d", bill.getBillID()));
+        Id = new Label("   ID: " + String.format("%d",bill.getBillID()));
         Id.setFont(Font.font("Arial", FontPosture.ITALIC, 16));
       
 

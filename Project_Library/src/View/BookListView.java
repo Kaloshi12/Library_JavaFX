@@ -12,5 +12,17 @@ Description_Controll ctrl = new Description_Controll(view);
 		view.getStageBook().setScene(scene);
 		view.getStageBook().show();
 	}
+	public ShowAllBooks getView() {
+		return view;
+	}
+	public void setView(ShowAllBooks view) {
+		this.view = view;
+	}
+	public Description_Controll getCtrl() {
+		return ctrl;
+	}
+	public void setCtrl(Description_Controll ctrl) {
+		this.ctrl = ctrl;
+	}
 
 }

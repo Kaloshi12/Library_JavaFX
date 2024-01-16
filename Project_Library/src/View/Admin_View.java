@@ -2,6 +2,13 @@ package View;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import Files.Files_Book;
+import Model.Book;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -20,12 +27,18 @@ public class Admin_View extends Pane {
 	private Button register_Manager;
 	private Button regiser_Librarian;
 	private Button check_Librarian;
-	
+	private Button Permission;
 	private Stage Astage;
+	private Files_Book file = new Files_Book();
+	private Button logOut;
 
 		 public Admin_View(){
+			 
 			Astage = new Stage();
 			Astage.setTitle("Administrator");
+			Astage.setOnShown(e -> {
+		        Message(); 
+		    });
 			text = new Text();
 			text.setText("Welcome Admin");
 			text.setLayoutX(150);
@@ -83,15 +96,86 @@ public class Admin_View extends Pane {
 			regiser_Librarian.setOnMouseEntered(e -> regiser_Librarian.setStyle("-fx-background-color: lightblue;"));
 			regiser_Librarian.setOnMouseExited(e -> regiser_Librarian.setStyle(null));
 			check_Librarian = new Button("Controll");
-			check_Librarian.setLayoutX(230);
+			check_Librarian.setLayoutX(310);
 			check_Librarian.setLayoutY(300);
 			check_Librarian.setPrefWidth(120);
 			check_Librarian.setPrefHeight(60);
 			check_Librarian.setOnMouseEntered(e -> check_Librarian.setStyle("-fx-background-color: lightblue;"));
 			check_Librarian.setOnMouseExited(e -> check_Librarian.setStyle(null));
+			Permission = new Button("Change Role");
+			Permission.setLayoutX(150);
+			Permission.setLayoutY(300);
+			Permission.setPrefWidth(120);
+			Permission.setPrefHeight(60);
+			Permission.setOnMouseEntered(e -> Permission.setStyle("-fx-background-color: lightblue;"));
+			Permission.setOnMouseExited(e -> Permission.setStyle(null));
+			logOut = new Button("LogOut");
+			logOut.setLayoutX(5);
+			logOut.setLayoutY(20);
+			logOut.setPrefWidth(80);
+			logOut.setPrefHeight(20);
+			logOut.setOnMouseEntered(e -> logOut.setStyle("-fx-background-color: lightblue;"));
+			logOut.setOnMouseExited(e -> logOut.setStyle(null));
+			getChildren().addAll(text,register,addBooks,showBooks,showSoldBooks,delete,register_Manager,regiser_Librarian,check_Librarian,Permission,logOut);
 			
-			getChildren().addAll(text,register,addBooks,showBooks,showSoldBooks,delete,register_Manager,regiser_Librarian,check_Librarian);
+		}
+		 
+		 
+		public Files_Book getFile() {
+			return file;
+		}
+
+
+		public void setFile(Files_Book file) {
+			this.file = file;
+		}
+
+
+		public Button getLogOut() {
+			return logOut;
+		}
+
+
+		public void setLogOut(Button logOut) {
+			this.logOut = logOut;
+		}
+
+
+		public void Message() {
+			List<Book> lowQuantityBooks = new ArrayList<>();
+
+			for (Book book : file.getAll()) {
+			    if (book.getQuantity() < 5) {
+			        lowQuantityBooks.add(book);
+			    }
+			}
+
+			if (!lowQuantityBooks.isEmpty()) {
+			    showAlert("Low Quantity Warning", getBookInfo(lowQuantityBooks));
+			}
 			
+		}
+
+
+		private String getBookInfo(List<Book> books) {
+		    StringBuilder info = new StringBuilder("The following books have low quantity:\n\n");
+
+		    for (Book book : books) {
+		        info.append("Title: ").append(book.getTitle()).append("\n");
+		        info.append("Author: ").append(book.getAuthor()).append("\n\n");
+		    }
+
+		    return info.toString();
+		}
+
+
+	public Button getPermission() {
+			return Permission;
+		}
+
+
+		public void setPermission(Button permission) {
+			Permission = permission;
 		}
 
 
@@ -203,7 +287,13 @@ public class Admin_View extends Pane {
 		}
 
 
-		
+		 public void showAlert(String title, String content) {
+		        Alert alert = new Alert(AlertType.WARNING);
+		        alert.setTitle(title);
+		        alert.setHeaderText(null);
+		        alert.setContentText(content);
+		        alert.showAndWait();
+		    }
 
 
 }

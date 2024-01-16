@@ -89,9 +89,9 @@
 	</section>
 	<section name="ProblemSeveritiesConfigurationBlock">
 		<item key="expanded0" value="false"/>
-		<item key="expanded1" value="false"/>
+		<item key="expanded1" value="true"/>
 		<item key="expanded2" value="false"/>
-		<item key="expanded3" value="true"/>
+		<item key="expanded3" value="false"/>
 		<item key="expanded4" value="false"/>
 		<item key="expanded5" value="false"/>
 		<item key="expanded6" value="false"/>
@@ -104,5 +104,11 @@
 		<item key="DIALOG_WIDTH" value="689"/>
 		<item key="DIALOG_HEIGHT" value="718"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="org.eclipse.jdt.internal.ui.dialogs.PackageSelectionDialog">
+		<item key="x" value="700"/>
+		<item key="y" value="29"/>
+		<item key="width" value="526"/>
+		<item key="height" value="575"/>
 	</section>
 </section>

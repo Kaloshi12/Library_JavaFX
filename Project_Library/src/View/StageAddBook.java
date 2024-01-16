@@ -19,7 +19,6 @@ public class StageAddBook extends OpenStage {
     public ButtonAdd_Controller getCtrl() {
         return ctrl;
     }
-
     public void setCtrl(ButtonAdd_Controller ctrl) {
         this.ctrl = ctrl;
     }

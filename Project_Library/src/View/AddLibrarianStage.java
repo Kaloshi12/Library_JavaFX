@@ -1,7 +1,7 @@
 package View;
 
 import Controller.AddLibrarian_Controller;
-import Model.Librarian;
+
 import javafx.scene.Scene;
 
 public class AddLibrarianStage extends OpenStage {
@@ -11,7 +11,6 @@ private AddLibrarian_Controller ctrl = new AddLibrarian_Controller(view);
 @Override
 public void open() {
     Scene scene = new Scene(view, 800, 500);
-    view.getLibrarianTableView().setItems(Librarian.getLibrarianList());
     view.getStage().setScene(scene);
     view.getStage().show();
 }

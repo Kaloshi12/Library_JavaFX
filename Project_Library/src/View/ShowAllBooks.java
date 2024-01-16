@@ -2,6 +2,7 @@ package View;
 
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import Files.Files_Book;
 import Model.Book;
 import javafx.collections.FXCollections;
 	import javafx.collections.ObservableList;
@@ -18,6 +19,7 @@ import javafx.collections.FXCollections;
 	    private Stage stageBook;
 	    private ListView<Book> list;
 	    private Button descriptionButton;
+	    private final Files_Book file;
 	    private Text text;
 
 	    public ShowAllBooks() {
@@ -26,8 +28,8 @@ import javafx.collections.FXCollections;
 	        stageBook.setTitle("Books");
 	        text = new Text();
 	        text.setText("Books");
-	      
-	        list = new ListView<Book>(Book.getListBook());
+	        file = new Files_Book();
+	        list = new ListView<Book>(file.getAll());
 	        list.setCellFactory(param -> new ListCell<Book>() {
 	            @Override
 	            protected void updateItem(Book book, boolean empty) {

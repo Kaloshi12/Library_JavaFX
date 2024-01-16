@@ -1,17 +1,18 @@
 package View;
 
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Model.Author;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.IntegerStringConverter;
+import Files.Files_Book;
 import Model.Book;
 import Model.Genres;
 
@@ -30,15 +31,17 @@ public class AddBookView {
     private MenuButton genreMenuButton;
     private TableView<Book> bookTableView;
     private VBox root;
-
+    private Files_Book file;
+    
     public AddBookView() {
-        initialize();
+        Merge();
     }
 
-    private void initialize() {
+    private void Merge() {
         stage = new Stage();
         stage.setTitle("Add Books");
-
+        setFile(new Files_Book());
+   
         GridPane addBookPane = createAddBookPane();
         bookTableView = createBookTableView();
 
@@ -112,41 +115,48 @@ public class AddBookView {
 	@SuppressWarnings("unchecked")
 	public TableView<Book> createBookTableView() {
         TableView<Book> tableView = new TableView<>();
-        tableView.setItems(Book.getListBook());
+        tableView.setItems(file.getAll());
         tableView.setEditable(true);
-        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         TableColumn<Book, String> iSBNColumn = new TableColumn<>("ISBN");
         iSBNColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getiSBN()));
+       iSBNColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         TableColumn<Book, String> titleColumn = new TableColumn<>("Title");
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        titleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         TableColumn<Book, String> authorFirstNameColumn = new TableColumn<>("Author First Name");
         authorFirstNameColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getAuthor().getFirstName()));
+        authorFirstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         TableColumn<Book, String> authorLastNameColumn = new TableColumn<>("Author Last Name");
         authorLastNameColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getAuthor().getLastName()));
+        authorLastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         TableColumn<Book, Integer> pagesColumn = new TableColumn<>("Number of Pages");
         pagesColumn.setCellValueFactory(new PropertyValueFactory<>("pages"));
+        pagesColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
         TableColumn<Book, Integer> quantityColumn = new TableColumn<>("Quantity");
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-
+        quantityColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        
         TableColumn<Book, String> genreColumn = new TableColumn<>("Genre");
         genreColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getGenre().toString()));
+        genreColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         
         TableColumn<Book, Double> priceColumn = new TableColumn<>("Price");
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-
+        priceColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        
         tableView.getColumns().addAll(iSBNColumn, titleColumn, authorFirstNameColumn,
                 authorLastNameColumn, pagesColumn, quantityColumn, genreColumn,priceColumn);
         
-        tableView.setItems(Book.getListBook());
+       
 
         return tableView;
     }
@@ -225,7 +235,10 @@ public class AddBookView {
 		this.genreMenuButton = genreMenuButton;
 	}
 
-	public TableView<Book> getBookTableView() {
+
+	
+
+    public TableView<Book> getBookTableView() {
 		return bookTableView;
 	}
 
@@ -233,9 +246,7 @@ public class AddBookView {
 		this.bookTableView = bookTableView;
 	}
 
-	
-
-    public VBox getRoot() {
+	public VBox getRoot() {
         return root;
     }
 
@@ -250,4 +261,12 @@ public class AddBookView {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
+	public Files_Book getFile() {
+		return file;
+	}
+
+	public void setFile(Files_Book file) {
+		this.file = file;
+	}
 }

@@ -2,6 +2,7 @@ package View;
 
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import Files.Files_Book;
 import Model.Book;
 import javafx.collections.FXCollections;
 	import javafx.collections.ObservableList;
@@ -17,6 +18,7 @@ import javafx.scene.layout.BorderPane;
 
 	public class SellBookView extends  BorderPane {
 	    private Stage stageBook;
+	    private final Files_Book file;
 	    private ListView<Book> list;
 	    private Button buyButton;
 	    private Text text;
@@ -27,8 +29,8 @@ import javafx.scene.layout.BorderPane;
 	        stageBook.setTitle("Books");
 	        text = new Text();
 	        text.setText("Books");
-	      
-	        list = new ListView<Book>(Book.getListBook());
+	        file = new Files_Book();
+	        list = new ListView<Book>(file.loadBookFromFile());
 	        list.setCellFactory(param -> new ListCell<Book>() {
 	            @Override
 	            protected void updateItem(Book book, boolean empty) {

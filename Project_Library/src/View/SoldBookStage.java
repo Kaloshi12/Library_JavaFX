@@ -1,25 +1,27 @@
 package View;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import Files.FilesSoldBook;
 
 import Model.Book;
 
 public class SoldBookStage extends BorderPane {
     private Stage stage;
     private ListView<String> soldBooksListView;
+    private FilesSoldBook file;
     private ObservableMap<Book, Integer> soldBooksMap;
 
     public SoldBookStage() {
         stage = new Stage();
         stage.setTitle("Sold Books");
-
-        this.soldBooksMap = Book.getSoldBooksMap();
-
+        file = new FilesSoldBook();
+        
+         
+        this.soldBooksMap = file.getAll();
         soldBooksListView = new ListView<>();
         updateSoldBooksListView();
 

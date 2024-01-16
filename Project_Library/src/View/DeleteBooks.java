@@ -2,11 +2,13 @@ package View;
 
 import java.util.List;
 
+import Files.Files_Book;
 import Model.Book;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -17,6 +19,7 @@ import javafx.stage.Stage;
 
 public class DeleteBooks extends BorderPane{
 	 private Stage stageBook;
+	 private final Files_Book file;
 	    private ListView<Book> list;
 	    private Button delete;
 	    private Text text;
@@ -28,8 +31,9 @@ public class DeleteBooks extends BorderPane{
 	        text = new Text();
 	        text.setText("Which book you want to delete");
 	        text.setFont(Font.font("Arial", FontWeight.SEMI_BOLD,20));
-	      
-	        list = new ListView<>(Book.getListBook());
+	        file = new Files_Book(); 
+	        list = new ListView<Book>(file.getAll());
+	        list.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	        list.setCellFactory(param -> new ListCell<Book>() {
 	            @Override
 	            protected void updateItem(Book book, boolean empty) {
@@ -62,7 +66,7 @@ public class DeleteBooks extends BorderPane{
 	    }
 	    
 	    public void updateBookList() {
-	        list.setItems(FXCollections.observableList(Book.getListBook()));
+	        list.setItems(FXCollections.observableList(file.loadBookFromFile()));
 	    }
 	    public Stage getStageBook() {
 	        return stageBook;

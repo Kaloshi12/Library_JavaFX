@@ -23,10 +23,10 @@ public class MenuLibrarianView extends Pane {
 			Lstage = new Stage();
 			Lstage.setTitle("Librarian");
 			text = new Text();
-			text.setText("Welcome Manager");
+			text.setText("Welcome Librarian");
 			text.setLayoutX(150);
 			text.setLayoutY(100);
-			text.setFont(Font.font("Arial", FontPosture.ITALIC, 50));
+			text.setFont(Font.font("Arial", FontPosture.ITALIC, 30));
 			bill = new Button();
 			bill.setText("Bill");
 			bill.setLayoutX(20);
@@ -53,7 +53,7 @@ public class MenuLibrarianView extends Pane {
 			sellBook.setOnMouseExited(e -> sellBook.setStyle(null));
 
 			soldBook = new Button();
-			soldBook.setText("Sell Books");
+			soldBook.setText("Sold Books");
 			soldBook.setLayoutX(160);
 			soldBook.setLayoutY(300);
 			soldBook.setPrefWidth(120);
@@ -64,6 +64,7 @@ public class MenuLibrarianView extends Pane {
 			
 			
 			getChildren().addAll(text,bill,showBooks,sellBook,soldBook);
+			
 			
 		}
 

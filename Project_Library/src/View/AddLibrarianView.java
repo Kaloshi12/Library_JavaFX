@@ -1,13 +1,9 @@
 package View;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 
-import Model.AccessLevel;
-import Model.Librarian;
-import Model.Manager;
+import java.time.LocalDate;
+
+import Model.Employee;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
@@ -18,7 +14,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -35,7 +30,7 @@ import javafx.stage.Stage;
 	    private Button addButton;
 	    private Text messageText;
 	    private Stage stage;
-	    private TableView<Librarian> librarianTableView;
+	    private TableView<Employee> librarianTableView;
 	     
 
 		public AddLibrarianView() {
@@ -58,7 +53,7 @@ import javafx.stage.Stage;
 	        messageText = new Text();
 	        messageText.setStyle("-fx-fill: red;");
 
-	        librarianTableView =createLibrarianTableView();
+	        librarianTableView = createLibrarianTableView();
 
 	        add(new Label("Name:"), 0, 0);
 	        add(nameField, 1, 0);
@@ -87,56 +82,56 @@ import javafx.stage.Stage;
 
 
 		@SuppressWarnings("unchecked")
-		private TableView<Librarian> createLibrarianTableView() {
-	        TableView<Librarian> tableView = new TableView<>();
-	        TableColumn<Librarian, String> nameColumn = new TableColumn<>("Name");
-	        nameColumn.setCellValueFactory(cellData ->
-	                new SimpleStringProperty(cellData.getValue().getName()));
+		public TableView<Employee> createLibrarianTableView() {
+		    TableView<Employee> tableView = new TableView<>();
+		    TableColumn<Employee, String> nameColumn = new TableColumn<>("Name");
+		    nameColumn.setCellValueFactory(cellData ->
+		            new SimpleStringProperty(cellData.getValue().getName()));
 
-	        TableColumn<Librarian, String> surnameColumn = new TableColumn<>("Surname");
-	        surnameColumn.setCellValueFactory(cellData ->
-	                new SimpleStringProperty(cellData.getValue().getSurname()));
+		    TableColumn<Employee, String> surnameColumn = new TableColumn<>("Surname");
+		    surnameColumn.setCellValueFactory(cellData ->
+		            new SimpleStringProperty(cellData.getValue().getSurname()));
 
-	        TableColumn<Librarian, LocalDate> birthdayColumn = new TableColumn<>("Birthday");
-	        birthdayColumn.setCellValueFactory(cellData ->
-	                new SimpleObjectProperty<>(cellData.getValue().getBirthday()));
+		    TableColumn<Employee, LocalDate> birthdayColumn = new TableColumn<>("Birthday");
+		    birthdayColumn.setCellValueFactory(cellData ->
+		            new SimpleObjectProperty<>(cellData.getValue().getBirthday()));
 
-	        
-	        birthdayColumn.setCellFactory(column -> new TableCell<Librarian, LocalDate>() {
-	            @Override
-	            protected void updateItem(LocalDate item, boolean empty) {
-	                super.updateItem(item, empty);
-	                if (item == null || empty) {
-	                    setText(null);
-	                } else {
-	                    setText(item.toString());
-	                }
-	            }
-	        });
+		    birthdayColumn.setCellFactory(column -> new TableCell<Employee, LocalDate>() {
+		        @Override
+		        protected void updateItem(LocalDate item, boolean empty) {
+		            super.updateItem(item, empty);
+		            if (item == null || empty) {
+		                setText(null);
+		            } else {
+		                setText(item.toString());
+		            }
+		        }
+		    });
 
-	        TableColumn<Librarian, String> phoneNumberColumn = new TableColumn<>("Phone Number");
-	        phoneNumberColumn.setCellValueFactory(cellData ->
-	                new SimpleStringProperty(cellData.getValue().getPhoneNumber()));
+		    TableColumn<Employee, String> phoneNumberColumn = new TableColumn<>("Phone Number");
+		    phoneNumberColumn.setCellValueFactory(cellData ->
+		            new SimpleStringProperty(cellData.getValue().getPhoneNumber()));
 
-	        TableColumn<Librarian, Double> salaryColumn = new TableColumn<>("Salary");
-	        salaryColumn.setCellValueFactory(new PropertyValueFactory<>("salary"));
+		    TableColumn<Employee, Double> salaryColumn = new TableColumn<>("Salary");
+		    salaryColumn.setCellValueFactory(cellData ->
+		            new SimpleObjectProperty<>(cellData.getValue().getSalary()));
 
-	        TableColumn<Librarian, String> userIdColumn = new TableColumn<>("User ID");
-	        userIdColumn.setCellValueFactory(cellData ->
-	                new SimpleStringProperty(cellData.getValue().getUserId()));
+		    TableColumn<Employee, String> userIdColumn = new TableColumn<>("User ID");
+		    userIdColumn.setCellValueFactory(cellData ->
+		            new SimpleStringProperty(cellData.getValue().getUserId()));
 
-	        tableView.getColumns().addAll(nameColumn, surnameColumn, birthdayColumn,
-	                phoneNumberColumn, salaryColumn, userIdColumn);
+		    tableView.getColumns().addAll(nameColumn, surnameColumn, birthdayColumn,
+		            phoneNumberColumn, salaryColumn, userIdColumn);
 
-	        return tableView;
-	    }
+		    return tableView;
+		}
 
 		
-			public TableView<Librarian> getLibrarianTableView() {
+			public TableView<Employee> getLibrarianTableView() {
 			return librarianTableView;
 		}
 
-		public void setlibrarianTableView(TableView<Librarian> librarianTableView) {
+		public void setlibrarianTableView(TableView<Employee> librarianTableView) {
 			this.librarianTableView = librarianTableView;
 		}
 

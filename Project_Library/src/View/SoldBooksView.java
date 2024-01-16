@@ -9,18 +9,20 @@ import javafx.stage.Stage;
 
 import java.util.Map;
 
+import Files.FilesSoldBook;
 import Model.Book;
 
 public class SoldBooksView extends BorderPane {
     private Stage stage;
+    private FilesSoldBook file;
     private ListView<String> soldBooksListView;
     private ObservableMap<Book, Integer> soldBooksMap;
 
-    public SoldBooksView(ObservableMap<Book, Integer> soldBooksMap) {
+    public SoldBooksView() {
         stage = new Stage();
         stage.setTitle("Sold Books");
-
-        this.soldBooksMap = FXCollections.observableMap(soldBooksMap);
+        file = new FilesSoldBook();
+        this.soldBooksMap = file.getAll();
 
         soldBooksListView = new ListView<>();
         updateSoldBooksListView();

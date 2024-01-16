@@ -1,5 +1,9 @@
 package Model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -9,38 +13,55 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Employee {
-	private StringProperty name ;
-	private StringProperty surname;
+public class Employee implements Serializable{
+	private static final long serialVersionUID = 1L;
+	private  String name ;
+	private String surname;
 	private LocalDate birthday;
-	private StringProperty phoneNumber;
-	private DoubleProperty salary;
-	protected AccessLevel level;
-	private StringProperty userId;
-	private StringProperty password;
+	private String phoneNumber;
+	private Double salary;
+	private AccessLevel level;
+	private String userId;
+	private String password;
+	
+	
+	public Employee(String name, String surname, LocalDate birthday, String phoneNumber, Double salary, AccessLevel level,
+			String userId, String password) {
+		super();
+		this.name = name;
+		this.surname = surname;
+		this.birthday = birthday;
+		this.phoneNumber = phoneNumber;
+		this.salary = salary;
+		this.level = level;
+		this.userId = userId;
+		this.password = password;
+	}
+	
+	
 	public String getUserId() {
-		return (String)userId.get();
+		return userId;
 	}
 	public void setUserId(String userId) {
-		this.userId.set(userId);;
+		this.userId = userId;
 	}
 	public String getPassword() {
-		return password.get();
+		return password;
 	}
 	public void setPassword(String password) {
-		this.password.set(password);;
+		this.password = password;
 	}
 	public String getName() {
-		return (String)name.get();
+		return name;
 	}
 	public void setName(String name) {
-		this.name.set(name);;
+		this.name = name;
 	}
 	public String getSurname() {
-		return (String)surname.get();
+		return surname;
 	}
 	public void setSurname(String surname) {
-		this.surname.set(surname);;
+		this.surname = surname;
 	}
 	public LocalDate getBirthday() {
 		return birthday;
@@ -49,16 +70,16 @@ public class Employee {
 		this.birthday = birthday;
 	}
 	public String getPhoneNumber() {
-		return (String)phoneNumber.get();
+		return phoneNumber;
 	}
 	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber.set(phoneNumber);;
+		this.phoneNumber = phoneNumber;
 	}
 	public Double getSalary() {
-		return salary.get();
+		return salary;
 	}
 	public void setSalary(Double salary) {
-		this.salary.set(salary);;
+		this.salary = salary;
 	}
 	public AccessLevel getLevel() {
 		return level;
@@ -66,17 +87,12 @@ public class Employee {
 	public void setLevel(AccessLevel level) {
 		this.level = level;
 	}
-	public Employee(String name, String surname, LocalDate birthday, String phoneNumber, Double salary, AccessLevel level,
-			String userId, String password) {
-		super();
-		this.name = new SimpleStringProperty(name);
-		this.surname = new SimpleStringProperty(surname);
-		this.birthday = birthday;
-		this.phoneNumber = new SimpleStringProperty(phoneNumber);
-		this.salary = new SimpleDoubleProperty(salary);
-		this.level = level;
-		this.userId = new SimpleStringProperty(userId);
-		this.password = new SimpleStringProperty(password);
+	
+	@Override
+	public String toString() {
+		return "Employee [name=" + name + ", surname=" + surname + ", birthday=" + birthday + ", phoneNumber="
+				+ phoneNumber + ", salary=" + salary + ", level=" + level + ", userId=" + userId + ", password="
+				+ password + "]";
 	}
 	
 	

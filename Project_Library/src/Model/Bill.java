@@ -1,94 +1,75 @@
 package Model;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.Date;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-public class Bill {
+public class Bill implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int billID;
-	private Book[] book; 
+    private Book[] books;
     private Date date;
     private double totalPrice;
-    private static ObservableList<Bill> billList = FXCollections.observableArrayList();
 
-    
-
-    public Bill(int billId,Book[] book, Date date,double totalPrice) {
-        this.billID = billId;
-    	this.book = book;
+    public Bill(int billID, Book[] books, Date date, double totalPrice) {
+        this.billID = billID;
+        this.books = books;
         this.date = date;
         this.totalPrice = totalPrice;
     }
 
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        out.writeInt(billID);
+        out.writeObject(books);
+        out.writeObject(date);
+        out.writeDouble(totalPrice);
+    }
 
-
-	@Override
-	public String toString() {
-		return "Bill [book=" + Arrays.toString(book) + ", date=" + date + ", totalPrice=" + totalPrice + "]";
-	}
-
-
-
-	public Book[] getBook() {
-		return book;
-	}
-
-
-
-	public void setBook(Book[] book) {
-		this.book = book;
-	}
-
-
-
-	public double getTotalPrice() {
-		return totalPrice;
-	}
-
-
-
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-
-
-
-	public static void setBillList(ObservableList<Bill> billList) {
-		Bill.billList = billList;
-	}
-
-
-
-	public Date getDate() {
-		return date;
-	}
-
-
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public int getBillID() {
+    public int getBillID() {
 		return billID;
 	}
-
-
 
 	public void setBillID(int billID) {
 		this.billID = billID;
 	}
 
-
-
-	public static ObservableList<Bill> getBillList(){
-		return billList;
+	public Book[] getBooks() {
+		return books;
 	}
-	public static void addBillList(Bill bill) {
-		billList.add(bill);
+
+	public void setBooks(Book[] books) {
+		this.books = books;
 	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        billID = in.readInt();
+        books = (Book[]) in.readObject();
+        date = (Date) in.readObject();
+        totalPrice = in.readDouble();
+    }
+
+    @Override
+    public String toString() {
+        return "Bill [billID=" + billID + ", books=" + Arrays.toString(books) + ", date=" + date + ", totalPrice=" + totalPrice + "]";
+    }
 
 
 }

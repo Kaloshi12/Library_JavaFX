@@ -1,6 +1,6 @@
 package View;
 
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleObjectProperty; 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -8,12 +8,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.time.LocalDate;
-import java.util.Date;
+import Model.Employee;
 
-import Model.AccessLevel;
-import Model.Manager;
 
 public class AddManagerView extends GridPane {
     private TextField nameField;
@@ -26,7 +23,7 @@ public class AddManagerView extends GridPane {
     private Button addButton;
     private Text messageText;
     private Stage stage;
-    private TableView<Manager> managerTableView;
+    private TableView<Employee> managerTableView;
 
     public AddManagerView() {
         stage = new Stage();
@@ -37,7 +34,7 @@ public class AddManagerView extends GridPane {
 
         nameField = new TextField();
         surnameField = new TextField();
-        birthdayPicker = new DatePicker();  // Changed from TextField to DatePicker
+        birthdayPicker = new DatePicker();  
         phoneNumberField = new TextField();
         salaryField = new TextField();
         userIdField = new TextField();
@@ -71,22 +68,23 @@ public class AddManagerView extends GridPane {
     }
 
     @SuppressWarnings("unchecked")
-    private TableView<Manager> createManagerTableView() {
-        TableView<Manager> tableView = new TableView<>();
-        TableColumn<Manager, String> nameColumn = new TableColumn<>("Name");
+    private TableView<Employee> createManagerTableView() {
+        TableView<Employee> tableView = new TableView<>();
+        tableView.setEditable(true);
+        TableColumn<Employee, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getName()));
 
-        TableColumn<Manager, String> surnameColumn = new TableColumn<>("Surname");
+        TableColumn<Employee, String> surnameColumn = new TableColumn<>("Surname");
         surnameColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getSurname()));
 
-        TableColumn<Manager, LocalDate> birthdayColumn = new TableColumn<>("Birthday");
+        TableColumn<Employee, LocalDate> birthdayColumn = new TableColumn<>("Birthday");
         birthdayColumn.setCellValueFactory(cellData ->
                 new SimpleObjectProperty<>(cellData.getValue().getBirthday()));
 
         // Update the cell factory to handle LocalDate
-        birthdayColumn.setCellFactory(column -> new TableCell<Manager, LocalDate>() {
+        birthdayColumn.setCellFactory(column -> new TableCell<Employee, LocalDate>() {
             @Override
             protected void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
@@ -98,14 +96,14 @@ public class AddManagerView extends GridPane {
             }
         });
 
-        TableColumn<Manager, String> phoneNumberColumn = new TableColumn<>("Phone Number");
+        TableColumn<Employee, String> phoneNumberColumn = new TableColumn<>("Phone Number");
         phoneNumberColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getPhoneNumber()));
 
-        TableColumn<Manager, Double> salaryColumn = new TableColumn<>("Salary");
+        TableColumn<Employee, Double> salaryColumn = new TableColumn<>("Salary");
         salaryColumn.setCellValueFactory(new PropertyValueFactory<>("salary"));
 
-        TableColumn<Manager, String> userIdColumn = new TableColumn<>("User ID");
+        TableColumn<Employee, String> userIdColumn = new TableColumn<>("User ID");
         userIdColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getUserId()));
 
@@ -116,11 +114,11 @@ public class AddManagerView extends GridPane {
     }
 
 
-    public TableView<Manager> getManagerTableView() {
+    public TableView<Employee> getManagerTableView() {
         return managerTableView;
     }
 
-    public void setManagerTableView(TableView<Manager> managerTableView) {
+    public void setManagerTableView(TableView<Employee> managerTableView) {
         this.managerTableView = managerTableView;
     }
 
