@@ -24,8 +24,6 @@ public class Admin_View_Controller {
     private LoginView loginView = new LoginView(null);
 
     public Admin_View_Controller(Admin_View view) {
-        
-
         view.getShowBooks().setOnAction(e -> stage.open());
         view.getAddBooks().setOnAction(e -> addBook.open());
         view.getRegister_Manager().setOnAction(e -> addManager.open());
@@ -33,66 +31,41 @@ public class Admin_View_Controller {
         view.getRegiser_Librarian().setOnAction(e -> addLibrarian.open());
         view.getCheck_Librarian().setOnAction(e -> bill.open());
         view.getPermission().setOnAction(e -> role.open());
-        view.getLogOut().setOnAction(e -> logout());
     }
 
-    private void logout() {
-        // Close all other stages if needed
-        stage.close();
-        addBook.close();
-        addManager.close();
-        deleteStage.close();
-        addLibrarian.close();
-        bill.close();
-        role.close();
-
-        // Open the login view
-        Platform.runLater(loginView::open);
-    }
-    public void close() {
-        if (stage != null) {
-            stage.close();
-        }
+    public BookListView getStage() {
+        return stage;
     }
 
-	
-	  
-	
-	public BookListView getStage() {
-		return stage;
-	}
+    public void setStage(BookListView stage) {
+        this.stage = stage;
+    }
 
-	public void setStage(BookListView stage) {
-		this.stage = stage;
-	}
+    public StageAddBook getAddBook() {
+        return addBook;
+    }
 
-	public StageAddBook getAddBook() {
-		return addBook;
-	}
+    public void setAddBook(StageAddBook addBook) {
+        this.addBook = addBook;
+    }
 
-	public void setAddBook(StageAddBook addBook) {
-		this.addBook = addBook;
-	}
+    public AddManager_Stage getAddManager() {
+        return addManager;
+    }
 
-	public AddManager_Stage getAddManager() {
-		return addManager;
-	}
+    public void setAddManager(AddManager_Stage addManager) {
+        this.addManager = addManager;
+    }
 
-	public void setAddManager(AddManager_Stage addManager) {
-		this.addManager = addManager;
-	}
+    public Admin_View getView() {
+        return view;
+    }
 
-	
+    public void setView(Admin_View view) {
+        this.view = view;
+    }
 
-	public Admin_View getView() {
-		return view;
-	}
-
-	public void setView(Admin_View view) {
-		this.view = view;
-	}
-	public void setLoginView(LoginView loginView) {
+    public void setLoginView(LoginView loginView) {
         this.loginView = loginView;
     }
-	
 }
